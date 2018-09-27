@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/fond_test"
+    tools:context="kurzen.editeurdetexte.MainActivity">
+
+    <ImageButton
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        android:background="@null"
+        app:srcCompat="@mipmap/menu" />
+
+    <ImageButton
+        android:id="@+id/pagePrecedente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="centerInside"
+        app:srcCompat="@mipmap/fleche_haut" />
+
+    <ImageButton
+        android:id="@+id/pageSuivante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        app:srcCompat="@mipmap/fleche_bas" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:ems="10"
+        android:gravity="top|left"
+        android:inputType="textMultiLine"
+        android:lines="2"
+        android:maxLines="2"
+        android:minLines="1"
+        android:text="Name"
+        android:textColor="@android:color/background_dark" />
+
+    <ImageView
+        android:id="@+id/rouleauEnroule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:contentDescription="menu"
+        android:scaleType="centerInside"
+        android:visibility="visible"
+        app:srcCompat="@mipmap/rouleau_top_seul" />
+
+    <ImageView
+        android:id="@+id/rouleauDeroule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        android:visibility="invisible"
+        app:srcCompat="@mipmap/menu_deroulant_fond" />
+
+    <ImageButton
+        android:id="@+id/boutonImport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="centerInside"
+        android:visibility="invisible"
+        app:srcCompat="@mipmap/import_pdf" />
+
+    <ImageButton
+        android:id="@+id/boutonExport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="centerInside"
+        android:visibility="invisible"
+        app:srcCompat="@mipmap/export_pdf" />
+
+    <ImageButton
+        android:id="@+id/sauvegarder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="centerInside"
+        android:visibility="invisible"
+        app:srcCompat="@mipmap/save_buton" />
+
+    <ImageButton
+        android:id="@+id/Retour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="centerInside"
+        android:visibility="invisible"
+        app:srcCompat="@mipmap/back_to_menu" />
+
+    <ImageButton
+        android:id="@+id/choixMusique"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:visibility="visible"
+        app:srcCompat="@android:drawable/ic_media_play" />
+
+</android.support.constraint.ConstraintLayout>
