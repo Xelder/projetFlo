@@ -97,7 +97,7 @@ public class FileExplore extends Activity {
                             Toast.makeText(FileExplore.this, selected.toString() + " selected", Toast.LENGTH_LONG).show();
                             dismissDialog(CUSTOM_DIALOG_ID);
                             cheminAbsolu = new String(selected.getAbsolutePath());
-                            mMyAppsBundle.putString("cheminAbsolu", cheminAbsolu);
+                            mMyAppsBundle.putString("cheminAboslu", cheminAbsolu);
                             LancerMainActivity();
                         }
                     }

@@ -270,7 +270,7 @@ public class MainActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
-    private void getCheminMusique()
+    private void recupererCheminMusiqueDeFileExplorer()
     {
         texteComplet.elementAt(pageActuelle).setMusique(FileExplore.mMyAppsBundle.getString("cheminAboslu"));
     }
@@ -322,7 +322,9 @@ public class MainActivity extends AppCompatActivity{
         pageSuivante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                pageSuivante();
+                recupererCheminMusiqueDeFileExplorer();
+                changerTextePrincipal(texteComplet.elementAt(pageActuelle).getMusique().toString());
+                //pageSuivante();
             }
         });
 
