@@ -300,7 +300,7 @@ public class MainActivity extends AppCompatActivity{
         pagePrecedente.setMinimumHeight(ecranHauteur / 10);
         pagePrecedente.setMaxHeight(ecranHauteur / 10);
         pagePrecedente.setX(ecranLargeur * 85 / 100);
-        pagePrecedente.setY(ecranHauteur * 1 / 100);
+        pagePrecedente.setY(ecranHauteur / 100);
         pagePrecedente.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -328,21 +328,21 @@ public class MainActivity extends AppCompatActivity{
 
         /** rouleau enroulee **/
         rouleauEnroule = findViewById(R.id.rouleauEnroule);
-        rouleauEnroule.setMinimumWidth(ecranLargeur * 30 / 100);
-        rouleauEnroule.setMaxWidth(ecranLargeur * 30 / 100);
-        rouleauEnroule.setMinimumHeight(ecranHauteur * 5 / 100);
-        rouleauEnroule.setMaxHeight(ecranHauteur * 5 / 100);
-        rouleauEnroule.setX(ecranLargeur * 5 / 100);
-        rouleauEnroule.setY(ecranHauteur * 9/ 100);
+        rouleauEnroule.setMinimumWidth(ecranLargeur * 60 / 100);
+        rouleauEnroule.setMaxWidth(ecranLargeur * 60 / 100);
+        rouleauEnroule.setMinimumHeight(ecranHauteur * 15 / 100);
+        rouleauEnroule.setMaxHeight(ecranHauteur * 15 / 100);
+        rouleauEnroule.setX(ecranLargeur * 3/ 100);
+        rouleauEnroule.setY(ecranHauteur * 1/ 100);
 
         /** rouleau deroulee **/
         rouleauDeroule = findViewById(R.id.rouleauDeroule);
-        rouleauDeroule.setMinimumWidth(ecranLargeur * 31 / 100);
-        rouleauDeroule.setMaxWidth(ecranLargeur * 31 / 100);
-        rouleauDeroule.setMinimumHeight(ecranHauteur * 55 / 100);
-        rouleauDeroule.setMaxHeight(ecranHauteur * 55 / 100);
-        rouleauDeroule.setX(ecranLargeur * 2 / 100);
-        rouleauDeroule.setY(ecranHauteur * 9/ 100);
+        rouleauDeroule.setMinimumWidth(ecranLargeur * 63 / 100);
+        rouleauDeroule.setMaxWidth(ecranLargeur * 63 / 100);
+        rouleauDeroule.setMinimumHeight(ecranHauteur * 59 / 100);
+        rouleauDeroule.setMaxHeight(ecranHauteur * 59 / 100);
+        rouleauDeroule.setX(ecranLargeur * 2/ 100);
+        rouleauDeroule.setY(ecranHauteur * 1/ 100);
 
         /** bouton import **/
         boutonImport = findViewById(R.id.boutonImport);
@@ -350,8 +350,8 @@ public class MainActivity extends AppCompatActivity{
         boutonImport.setMaxWidth(ecranLargeur * 40 / 100);
         boutonImport.setMinimumHeight(ecranHauteur * 6 / 100);
         boutonImport.setMaxHeight(ecranHauteur * 6/ 100);
-        boutonImport.setX(ecranLargeur * 7 / 100);
-        boutonImport.setY(ecranHauteur * 11/ 100);
+        boutonImport.setX(ecranLargeur * 20 / 100);
+        boutonImport.setY(ecranHauteur * 8/ 100);
         boutonImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -366,7 +366,7 @@ public class MainActivity extends AppCompatActivity{
         boutonExport.setMaxWidth(ecranLargeur * 40 / 100);
         boutonExport.setMinimumHeight(ecranHauteur * 6 / 100);
         boutonExport.setMaxHeight(ecranHauteur * 6/ 100);
-        boutonExport.setX(ecranLargeur * 7 / 100);
+        boutonExport.setX(ecranLargeur * 20 / 100);
         boutonExport.setY(ecranHauteur * 16/ 100);
         boutonExport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -381,8 +381,8 @@ public class MainActivity extends AppCompatActivity{
         sauvegarder.setMaxWidth(ecranLargeur * 40 / 100);
         sauvegarder.setMinimumHeight(ecranHauteur * 6 / 100);
         sauvegarder.setMaxHeight(ecranHauteur * 6/ 100);
-        sauvegarder.setX(ecranLargeur * 7 / 100);
-        sauvegarder.setY(ecranHauteur * 21/ 100);
+        sauvegarder.setX(ecranLargeur * 22 / 100);
+        sauvegarder.setY(ecranHauteur * 24/ 100);
         sauvegarder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -396,8 +396,8 @@ public class MainActivity extends AppCompatActivity{
         retour.setMaxWidth(ecranLargeur * 40 / 100);
         retour.setMinimumHeight(ecranHauteur * 6 / 100);
         retour.setMaxHeight(ecranHauteur * 6/ 100);
-        retour.setX(ecranLargeur * 7 / 100);
-        retour.setY(ecranHauteur * 26/ 100);
+        retour.setX(ecranLargeur * 11 / 100);
+        retour.setY(ecranHauteur * 32/ 100);
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -410,8 +410,8 @@ public class MainActivity extends AppCompatActivity{
         choixMusique.setMaxWidth(ecranLargeur * 10 / 100);
         choixMusique.setMinimumHeight(ecranHauteur * 10 / 100);
         choixMusique.setMaxHeight(ecranHauteur * 10/ 100);
-        choixMusique.setX(ecranLargeur * 50 / 100);
-        choixMusique.setY(ecranHauteur * 5 / 100);
+        choixMusique.setX(ecranLargeur * 65 / 100);
+        choixMusique.setY(ecranHauteur * 2 / 100);
         choixMusique.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -421,12 +421,12 @@ public class MainActivity extends AppCompatActivity{
 
         /** option de la page Menu **/
         menu = findViewById(R.id.menu);
-        menu.setMinimumWidth(ecranLargeur * 30 / 100);
-        menu.setMaxWidth(ecranLargeur * 30 / 100);
-        menu.setMinimumHeight(ecranHauteur * 2/ 10);
-        menu.setMaxHeight(ecranHauteur * 2/ 10);
-        menu.setX(ecranLargeur * 2 / 100);
-        menu.setY(ecranHauteur * 1 / 100);
+        menu.setMinimumWidth(ecranLargeur * 20 / 100);
+        menu.setMaxWidth(ecranLargeur * 20 / 100);
+        menu.setMinimumHeight(ecranHauteur * 15/ 100);
+        menu.setMaxHeight(ecranHauteur * 15/ 100);
+        menu.setX(ecranLargeur * 20 / 100);
+        menu.setY(ecranHauteur * 2 / 100);
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -452,7 +452,6 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
