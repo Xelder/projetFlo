@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity{
 
     private void getCheminMusique()
     {
-        texteComplet.elementAt(pageActuelle).setMusique(FileExplore.mMyAppsBundle.getString("cheminMusique"));
+        texteComplet.elementAt(pageActuelle).setMusique(FileExplore.mMyAppsBundle.getString("cheminAboslu"));
     }
 
     private void mainCode()

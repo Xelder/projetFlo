@@ -39,7 +39,7 @@ public class FileExplore extends Activity {
 
     private List<String> fileList = new ArrayList<String>();
 
-    private String cheminMusique = new String("");
+    private String cheminAbsolu = new String("");
 
     private void LancerMainActivity()
     {
@@ -91,13 +91,13 @@ public class FileExplore extends Activity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         File selected = new File(fileList.get(position));
                         if(selected.isDirectory()) {
-                            cheminMusique = new String(cheminMusique + "/" + selected.toString());
+                            cheminAbsolu = new String(cheminAbsolu + "/" + selected.toString());
                             ListDir(selected);
                         } else {
                             Toast.makeText(FileExplore.this, selected.toString() + " selected", Toast.LENGTH_LONG).show();
                             dismissDialog(CUSTOM_DIALOG_ID);
-                            cheminMusique = new String(selected.getAbsolutePath());
-                            mMyAppsBundle.putString("cheminMusique", cheminMusique);
+                            cheminAbsolu = new String(selected.getAbsolutePath());
+                            mMyAppsBundle.putString("cheminAbsolu", cheminAbsolu);
                             LancerMainActivity();
                         }
                     }
@@ -140,7 +140,7 @@ public class FileExplore extends Activity {
         dialog_ListView.setAdapter(directoryList);
     }
 
-    public String getCheminMusique(){
-        return cheminMusique.toString();
+    public String getcheminAbsolu(){
+        return cheminAbsolu.toString();
     }
 }
