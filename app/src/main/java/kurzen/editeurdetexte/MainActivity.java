@@ -32,29 +32,27 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity{
 	
     private int ecranLargeur, ecranHauteur;
     private EditText saisieText;
-    private String texteExemple = "", nomFichier = "testFichier";
-    private Vector<Page> texteComplet = new Vector<Page>();
-    private int nombreDePage = 0, pageActuelle = 0;
+    private String texteExemple = "";
+    private List<Page> texteComplet = new ArrayList<Page>();
+    private Page pageActuelle;
     private FileExplore fe;
+    private Context mContext;
 
     /** attributs pour la gestion des pdf **/
-    File root;
+
     AssetManager assetManager;
-
-
 
     /**Attributs pour l'interfacce graphique **/
     private ImageButton pagePrecedente, pageSuivante, menu, boutonImport, boutonExport, sauvegarder, retour, choixMusique;
     private ImageView rouleauEnroule, rouleauDeroule;
-
-    /** Attributs pour la lecture de musique **/
-    MediaPlayer musiqueEnCours;
 
     @Override
     protected void onStart() {
@@ -65,215 +63,21 @@ public class MainActivity extends AppCompatActivity{
 
     private void initialisationPage()
     {
-        //super.onStart();
         PDFBoxResourceLoader.init(getApplicationContext());
-        root = android.os.Environment.getExternalStorageDirectory();
         assetManager = getAssets();
 
-        texteComplet.add(new Page(0, "page vide"));
+        mContext = this;
+        texteComplet.add(new Page(0, "Page de départ"));
+        pageActuelle = texteComplet.get(0);
     }
 
-    private void chargementFichierLocal()
-    {
-        FileInputStream in = null;
 
-        try {
-            in = openFileInput(nomFichier);
-            InputStreamReader isr = new InputStreamReader(in);
-            BufferedReader br = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            String text;
-
-            while ((text = br.readLine()) != null) {
-                sb.append(text).append("\n");
-            }
-
-           extrairePage(sb.toString());
-        }catch(FileNotFoundException e){
-
-        }catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        pageActuelle = 0;
-        changerTextePrincipal(texteComplet.elementAt(0).getText());
-    }
-
-    private void recupererTextePDF()
-    {
-        String cheminAbosluFichierPDF = new String(root.getAbsolutePath() + "/Download/test-pdf.pdf");
-        PDDocument document = null;
-
-        int i, j; // j = i-1
-
-        try {
-            File f = new File(cheminAbosluFichierPDF);
-            document = PDDocument.load(f);
-            nombreDePage = document.getNumberOfPages();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-
-        if(document != null)
-        {
-            try {
-                PDFTextStripper pdfStripper = new PDFTextStripper();
-                for(i = 1 ; i <= nombreDePage ; i++)
-                {
-                    j = i - 1;
-                    pdfStripper.setStartPage(j);
-                    pdfStripper.setEndPage(i);
-                    texteComplet.add(new Page(j, pdfStripper.getText(document)));
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (document != null) document.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            saisieText.setText(new String(texteComplet.elementAt(0).getText()));
-        }
-        else
-            saisieText.setText("document est null");
-
-    }
-
-    private void extrairePage(String texteAExtraire)
-    {
-        String tmpPage = "", tmpTexte = "";
-
-        if(!texteComplet.isEmpty())
-        {
-            texteComplet.clear();
-        }
-
-        for(int i = 0 ; i < texteAExtraire.length() ; i++)
-        {
-            if(texteAExtraire.charAt(i) == '/')
-            {
-                tmpPage = new String("" + texteAExtraire.charAt(i + 1) + texteAExtraire.charAt(i + 2) + texteAExtraire.charAt(i + 3) + texteAExtraire.charAt(i + 4));
-                if(tmpPage.equals(new String("page")))
-                {
-                    Page p = new Page(nombreDePage, tmpTexte);
-                    texteComplet.add(p);
-                    nombreDePage++;
-                    i += 5;
-                    tmpTexte = "";
-                }
-                else
-                    tmpTexte = new String(tmpTexte + texteAExtraire.charAt(i));
-            }
-            else
-            {
-                tmpTexte = new String(tmpTexte + texteAExtraire.charAt(i));
-            }
-        }
-        texteComplet.add(new Page(nombreDePage, tmpTexte));
-        nombreDePage++;
-    }
-
-    private void sauvegarder()
-    {
-        /** sauvegarde des dernieres modifications **/
-        texteComplet.elementAt(pageActuelle).setText(saisieText.getText().toString());
-
-        FileOutputStream output = null;
-        String texteASauvegarger = new String("");
-
-        for(int i = 0 ; i <= nombreDePage ; i++)
-        {
-            if(i != nombreDePage)
-                texteASauvegarger = new String(texteASauvegarger + texteComplet.elementAt(i).getText() + "/page/");
-            else
-                texteASauvegarger = new String(texteASauvegarger + texteComplet.elementAt(i).getText());
-        }
-        try {
-            output = openFileOutput(nomFichier, MODE_PRIVATE);
-            output.write(texteASauvegarger.getBytes());
-
-            if(output != null)
-                output.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void changerTextePrincipal(String texte)
-    {
-        Page p = new Page(pageActuelle, texte);
-        texteComplet.elementAt(pageActuelle).setText(texte);
-        saisieText.setText(texteComplet.elementAt(pageActuelle).getText());
-    }
-
-    private void pageSuivante()
-    {
-        texteComplet.elementAt(pageActuelle).setText(saisieText.getText().toString());
-        if(pageActuelle < nombreDePage - 1)
-        {
-            pageActuelle++;
-        }
-        else
-        {
-            pageActuelle++;
-            nombreDePage++;
-            texteComplet.add(new Page(pageActuelle, new String("Nouvelle page")));
-        }
-        saisieText.setText(texteComplet.elementAt(pageActuelle).getText());
-    }
-
-    private void pagePrecedente()
-    {
-        texteComplet.setElementAt(new Page(pageActuelle, saisieText.getText().toString()),pageActuelle);
-        if(pageActuelle != 0)
-        {
-            pageActuelle--;
-        }
-        saisieText.setText(texteComplet.elementAt(pageActuelle).getText());
-    }
-
-    /** Fonction pour les musiques **/
-    private void changerMusiqueEnCours()
-    {
-        musiqueEnCours.stop();
-       // musiqueEnCours = MediaPlayer.create(this, texteComplet.elementAt(pageActuelle).getMusique());
-        lancerMusique();
-    }
-
-    private void lancerMusique()
-    {
-        musiqueEnCours.start();
-        musiqueEnCours.isLooping();
-    }
-
-    private void lancerMusique(String cheminMusique)
-    {
-        Uri u = Uri.parse(cheminMusique);
-        musiqueEnCours = MediaPlayer.create(getApplicationContext(), u);
-        lancerMusique();
-    }
+ /*
     private void LancerExploFichier()
     {
         Intent intent = new Intent(MainActivity.this, FileExplore.class);
         startActivity(intent);
-    }
-
-    private void recupererCheminMusiqueDeFileExplorer()
-    {
-        texteComplet.elementAt(pageActuelle).setMusique(FileExplore.mMyAppsBundle.getString("cheminAboslu"));
-    }
+    }*/
 
     private void mainCode()
     {
@@ -283,15 +87,16 @@ public class MainActivity extends AppCompatActivity{
         saisieText.setHeight(ecranHauteur * 8 / 10);
         saisieText.setX(ecranLargeur / 10);
         saisieText.setY(ecranHauteur * 12 / 100);
+        saisieText.setText(pageActuelle.getText());
         saisieText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    changerTextePrincipal(saisieText.getText().toString());
+
                 }
             }
         });
-        changerTextePrincipal("texte de depart");
+
 
         /** option de la page precedente **/
         pagePrecedente = findViewById(R.id.pagePrecedente);
@@ -305,7 +110,7 @@ public class MainActivity extends AppCompatActivity{
 
             @Override
             public void onClick(View arg0) {
-                pagePrecedente();
+                pageActuelle = Page.pagePrecedente(pageActuelle, saisieText, texteComplet);
             }
 
         });
@@ -322,9 +127,7 @@ public class MainActivity extends AppCompatActivity{
         pageSuivante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                recupererCheminMusiqueDeFileExplorer();
-                changerTextePrincipal(texteComplet.elementAt(pageActuelle).getMusique().toString());
-                //pageSuivante();
+                 pageActuelle = Page.pageSuivante(pageActuelle, saisieText, texteComplet);
             }
         });
 
@@ -357,8 +160,8 @@ public class MainActivity extends AppCompatActivity{
         boutonImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                //recupererTextePDF();
-                chargementFichierLocal();
+                FileManager.recupererTextePDF(pageActuelle, saisieText, texteComplet);
+               // FileManager.chargementFichierLocal(mContext, pageActuelle, saisieText, texteComplet);
             }
         });
 
@@ -388,7 +191,7 @@ public class MainActivity extends AppCompatActivity{
         sauvegarder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                sauvegarder();
+                FileManager.sauvegarder(mContext, pageActuelle, saisieText, texteComplet);
             }
         });
 
@@ -417,7 +220,7 @@ public class MainActivity extends AppCompatActivity{
         choixMusique.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                LancerExploFichier();
+                //LancerExploFichier();
             }
         });
 
@@ -468,5 +271,4 @@ public class MainActivity extends AppCompatActivity{
         ecranLargeur = metrics.widthPixels;
         ecranHauteur = metrics.heightPixels;
     }
-
 }
