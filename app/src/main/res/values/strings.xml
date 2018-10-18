@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">EditeurDeTexte</string>
     <string name="hello">Hello World, FileExplore!</string>
+
+    <string name="title_activity_explorateur_fichiers_api23">ExplorateurFichiersAPI23</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
