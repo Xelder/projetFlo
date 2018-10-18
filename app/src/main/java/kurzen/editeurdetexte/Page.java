@@ -5,10 +5,6 @@ import android.widget.EditText;
 
 import java.util.List;
 
-/**
- * Created by kurzen on 25/07/2018.
- */
-
 public class Page {
     private String text;
     private Uri musique;

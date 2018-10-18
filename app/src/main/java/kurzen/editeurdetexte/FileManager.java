@@ -1,6 +1,7 @@
 package kurzen.editeurdetexte;
 
 import android.content.Context;
+import android.content.Intent;
 import android.widget.EditText;
 
 import com.tom_roush.pdfbox.pdmodel.PDDocument;
@@ -155,5 +156,11 @@ public class FileManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void LancerExploFichier(Context mContext)
+    {
+        Intent intent = new Intent(mContext, ExplorateurFichiersActivity.class);
+        mContext.startActivity(intent);
     }
 }

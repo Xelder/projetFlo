@@ -7,11 +7,6 @@ import android.net.Uri;
 public class MusiqueManager {
     private static MediaPlayer musiqueEnCours;
 
-    public static void recupererCheminMusiqueDeFileExplorer(Page pageActuelle)
-    {
-        pageActuelle.setMusique(Uri.parse(FileExplore.mMyAppsBundle.getString("cheminAboslu")));
-    }
-
     public static void lancerMusique(Context mContext)
     {
         // lance une musique stocké a linterieur de lappli
@@ -21,7 +16,6 @@ public class MusiqueManager {
         }
         musiqueEnCours.start();
         musiqueEnCours.isLooping();
-        System.out.println("===== musique lancée");
     }
 
     public static void lancerMusique(Context mContext, String cheminMusique)

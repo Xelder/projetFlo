@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity{
     private String texteExemple = "";
     private List<Page> texteComplet = new ArrayList<Page>();
     private Page pageActuelle;
-    private FileExplore fe;
     private Context mContext;
 
     /** attributs pour la gestion des pdf **/
@@ -71,13 +70,6 @@ public class MainActivity extends AppCompatActivity{
         pageActuelle = texteComplet.get(0);
     }
 
-
- /*
-    private void LancerExploFichier()
-    {
-        Intent intent = new Intent(MainActivity.this, FileExplore.class);
-        startActivity(intent);
-    }*/
 
     private void mainCode()
     {
@@ -127,7 +119,9 @@ public class MainActivity extends AppCompatActivity{
         pageSuivante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                 pageActuelle = Page.pageSuivante(pageActuelle, saisieText, texteComplet);
+
+                // pageActuelle = Page.pageSuivante(pageActuelle, saisieText, texteComplet);
+                new ExplorateurFichiers(mContext);
             }
         });
 
@@ -221,6 +215,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View arg0) {
                 //LancerExploFichier();
+                MusiqueManager.lancerMusique(mContext);
             }
         });
 
