@@ -59,7 +59,7 @@ public class ExplorateurFichiersActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterview, View view, int i , long l)
             {
-                 String filename = (String) tabFichier.get(i);
+                 String filename = tabFichier.get(i);
                 if (path.endsWith(File.separator)) {
                     filename = path + filename;
                 } else {

@@ -82,9 +82,6 @@ public class MainActivity extends AppCompatActivity{
         saisieText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-
-                }
             }
         });
 
@@ -108,7 +105,7 @@ public class MainActivity extends AppCompatActivity{
 
         /** option de la page suivante **/
         pageSuivante = findViewById(R.id.pageSuivante);
-        pageSuivante.setImageResource((int)R.mipmap.fleche_bas);
+        pageSuivante.setImageResource(R.mipmap.fleche_bas);
         pageSuivante.setMinimumWidth(ecranLargeur * 15 / 100);
         pageSuivante.setMaxWidth(ecranLargeur * 15 / 100);
         pageSuivante.setMinimumHeight(ecranHauteur / 10);

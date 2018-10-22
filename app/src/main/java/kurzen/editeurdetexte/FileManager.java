@@ -19,7 +19,7 @@ import java.util.List;
 public class FileManager {
 
     private static String nomFichier = "testFichier";
-    private static File root = android.os.Environment.getExternalStorageDirectory();;
+    private static File root = android.os.Environment.getExternalStorageDirectory();
 
     public static void chargementFichierLocal(Context mContexte, Page pageActuelle, EditText saisieText, List<Page> texteComplet)
     {
@@ -38,7 +38,7 @@ public class FileManager {
 
            extrairePage(sb.toString(), texteComplet);
         }catch(FileNotFoundException e){
-
+            e.printStackTrace();
         }catch (IOException e) {
             e.printStackTrace();
         }finally {
@@ -54,9 +54,9 @@ public class FileManager {
         saisieText.setText(pageActuelle.getText());
     }
 
-    public static void recupererTextePDF(Page pageActuelle,EditText saisieText, List<Page> texteComplet)
+    static void recupererTextePDF(Page pageActuelle,EditText saisieText, List<Page> texteComplet)
     {
-        String cheminAbosluFichierPDF = new String(root.getAbsolutePath() + "/Download/pdf-test.pdf");
+        String cheminAbosluFichierPDF = root.getAbsolutePath() + "/Download/pdf-test.pdf";
         PDDocument document = null;
 
         int i, j; // j = i-1
@@ -83,7 +83,7 @@ public class FileManager {
                 e.printStackTrace();
             } finally {
                 try {
-                    if (document != null) document.close();
+                    document.close();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -91,7 +91,7 @@ public class FileManager {
             saisieText.setText(pageActuelle.getText());
         }
         else
-            saisieText.setText("document non trouvé");
+            saisieText.setText("document non trouve");
 
         saisieText.setText(pageActuelle.getText());
     }
@@ -111,8 +111,8 @@ public class FileManager {
         {
             if(texteAExtraire.charAt(i) == '/')
             {
-                tmpPage = new String("" + texteAExtraire.charAt(i + 1) + texteAExtraire.charAt(i + 2) + texteAExtraire.charAt(i + 3) + texteAExtraire.charAt(i + 4));
-                if(tmpPage.equals(new String("page")))
+                tmpPage = "" + texteAExtraire.charAt(i + 1) + texteAExtraire.charAt(i + 2) + texteAExtraire.charAt(i + 3) + texteAExtraire.charAt(i + 4);
+                if(tmpPage.equals("page"))
                 {
                     Page p = new Page(texteComplet.size(), tmpTexte);
                     texteComplet.add(p);
@@ -120,11 +120,11 @@ public class FileManager {
                     tmpTexte = "";
                 }
                 else
-                    tmpTexte = new String(tmpTexte + texteAExtraire.charAt(i));
+                    tmpTexte = tmpTexte + texteAExtraire.charAt(i);
             }
             else
             {
-                tmpTexte = new String(tmpTexte + texteAExtraire.charAt(i));
+                tmpTexte = tmpTexte + texteAExtraire.charAt(i);
             }
         }
         texteComplet.add(new Page(texteComplet.size(), tmpTexte));
