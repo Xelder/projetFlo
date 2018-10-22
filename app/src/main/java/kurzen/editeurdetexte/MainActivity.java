@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity{
     private String texteExemple = "";
     private List<Page> texteComplet = new ArrayList<Page>();
     private Page pageActuelle;
-    private FileExplore fe;
     private Context mContext;
 
     /** attributs pour la gestion des pdf **/
@@ -70,9 +69,6 @@ public class MainActivity extends AppCompatActivity{
         texteComplet.add(new Page(0, "Page de départ"));
         pageActuelle = texteComplet.get(0);
     }
-
-
-
 
     private void mainCode()
     {

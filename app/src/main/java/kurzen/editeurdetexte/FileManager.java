@@ -160,7 +160,7 @@ public class FileManager {
 
     public static void LancerExploFichier(Context mContext)
     {
-        Intent intent = new Intent(mContext, ExplorateurFichiers2.class);
+        Intent intent = new Intent(mContext, ExplorateurFichiersActivity.class);
         mContext.startActivity(intent);
     }
 }

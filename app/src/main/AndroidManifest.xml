@@ -19,8 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FileExplore" />
         <activity android:name=".ExplorateurFichiers2" />
+        <activity android:name=".ExplorateurFichiersActivity"/>
     </application>
 
 </manifest>

@@ -5,16 +5,11 @@ import android.widget.EditText;
 
 import java.util.List;
 
-/**
- * Created by kurzen on 25/07/2018.
- */
 
 public class Page {
     private String text;
-    private Uri musique;
+    private String musique;
     private int numeroPage;
-
-
 
     public Page(int numeroPage, String text)
     {
@@ -25,7 +20,7 @@ public class Page {
     {
         this.numeroPage = numeroPage;
         this.text = text;
-        this.musique = Uri.parse(cheminAbosluMusique);
+        this.musique = new String(cheminAbosluMusique);
     }
 
 
@@ -70,12 +65,12 @@ public class Page {
         this.text = text;
     }
 
-    public Uri getMusique() {
+    public String getMusique() {
         return musique;
     }
 
-    public void setMusique(Uri musique) {
-        this.musique = (Uri)musique;
+    public void setMusique(String musique) {
+        this.musique = new String(musique);
     }
 
     public int getNumeroPage() {
