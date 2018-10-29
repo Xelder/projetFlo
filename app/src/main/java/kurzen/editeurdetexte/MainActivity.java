@@ -1,10 +1,7 @@
 package kurzen.editeurdetexte;
 
 // Chose a faire
-// mettre une boite de dialog qui affiche si le texte et sauvegarde
-// lancerexploFichier ne fonctionne pas en API 23
-// tester avec des autres API, 19 minimum pour accepter les pdf
-
+// faire en sorte que le chargement d'un pdf ce fasse sur toute les pages et pas qu'une seule
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -36,17 +33,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import javax.xml.transform.sax.SAXSource;
+
 public class MainActivity extends AppCompatActivity{
 	
-    private int ecranLargeur, ecranHauteur;
+    private int ecranLargeur;
+    private int ecranHauteur;
     private EditText saisieText;
-    private String texteExemple = "";
     private List<Page> texteComplet = new ArrayList<Page>();
     private Page pageActuelle;
     private Context mContext;
 
     /** attributs pour la gestion des pdf **/
-
     AssetManager assetManager;
 
     /**Attributs pour l'interfacce graphique **/
@@ -66,7 +64,7 @@ public class MainActivity extends AppCompatActivity{
         assetManager = getAssets();
 
         mContext = this;
-        texteComplet.add(new Page(0, "Page de départ"));
+        texteComplet.add(new Page(texteComplet.size(), "Page de départ"));
         pageActuelle = texteComplet.get(0);
     }
 
@@ -78,6 +76,7 @@ public class MainActivity extends AppCompatActivity{
         saisieText.setHeight(ecranHauteur * 8 / 10);
         saisieText.setX(ecranLargeur / 10);
         saisieText.setY(ecranHauteur * 12 / 100);
+
         saisieText.setText(pageActuelle.getText());
         saisieText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -115,8 +114,7 @@ public class MainActivity extends AppCompatActivity{
         pageSuivante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                // pageActuelle = Page.pageSuivante(pageActuelle, saisieText, texteComplet);
-                new ExplorateurFichiers(mContext);
+                pageActuelle = Page.pageSuivante(pageActuelle, saisieText, texteComplet);
             }
         });
 
@@ -149,7 +147,7 @@ public class MainActivity extends AppCompatActivity{
         boutonImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                FileManager.recupererTextePDF(pageActuelle, saisieText, texteComplet);
+                FileManager.recupererTextePDF(mContext, pageActuelle, saisieText, texteComplet);
                // FileManager.chargementFichierLocal(mContext, pageActuelle, saisieText, texteComplet);
             }
         });
@@ -210,7 +208,8 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View arg0) {
                 //LancerExploFichier();
-                MusiqueManager.lancerMusique(mContext);
+               // MusiqueManager.lancerMusique(mContext);
+                new ExplorateurFichiers(mContext);
             }
         });
 

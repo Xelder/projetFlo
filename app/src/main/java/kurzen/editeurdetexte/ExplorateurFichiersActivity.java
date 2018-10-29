@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ExplorateurFichiersActivity extends AppCompatActivity {
+    //private String path = new File(new File(Environment.getExternalStorageDirectory().getParent()).getParent()).getAbsolutePath();
     private String path = Environment.getExternalStorageDirectory().getAbsolutePath();
     private Context mContext;
     private List<String> tabFichier;
@@ -39,17 +40,15 @@ public class ExplorateurFichiersActivity extends AppCompatActivity {
         setTitle(path);
 
         File dir = new File(path);
-
         if (!dir.canRead()) {
             setTitle(getTitle() + " (inaccessible)");
         }
 
-        File[] list = dir.listFiles();
-
+        String[] list = dir.list();
         if (list != null) {
-            for (File file : list) {
-                if (!file.getName().startsWith(".")) {
-                    tabFichier.add(file.getName());
+            for (String file : list) {
+                if (!file.startsWith(".")) {
+                    tabFichier.add(file);
                 }
             }
         }
@@ -63,6 +62,11 @@ public class ExplorateurFichiersActivity extends AppCompatActivity {
                 if (path.endsWith(File.separator)) {
                     filename = path + filename;
                 } else {
+                    if(filename.equals("emulated"))
+                    {
+                        filename = filename + "/0";
+                    }
+
                     filename = path + File.separator + filename;
                 }
                 if (new File(filename).isDirectory()) {
@@ -70,7 +74,16 @@ public class ExplorateurFichiersActivity extends AppCompatActivity {
                     intent.putExtra("path", filename);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(mContext, filename + " is not a directory", Toast.LENGTH_LONG).show();
+                    if(filename.endsWith(".pdf"))
+                    {
+                        FileManager.setCheminPdf(filename);
+                    }
+                    else if(filename.endsWith(".mp3") || filename.endsWith(".mp4"))
+                    {
+                        MusiqueManager.setCheminMusique(filename);
+                    }
+                    Toast.makeText(mContext, filename, Toast.LENGTH_LONG).show();
+                    FileManager.LancerMain(mContext);
                 }
             }
         });

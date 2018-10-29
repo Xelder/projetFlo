@@ -3,8 +3,10 @@ package kurzen.editeurdetexte;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.tom_roush.pdfbox.pdmodel.PDDocument;
+import com.tom_roush.pdfbox.pdmodel.PDPage;
 import com.tom_roush.pdfbox.text.PDFTextStripper;
 
 import java.io.BufferedReader;
@@ -13,13 +15,17 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FileManager {
 
     private static String nomFichier = "testFichier";
     private static File root = android.os.Environment.getExternalStorageDirectory();
+    private static String cheminPdf = "";
 
     public static void chargementFichierLocal(Context mContexte, Page pageActuelle, EditText saisieText, List<Page> texteComplet)
     {
@@ -54,13 +60,12 @@ public class FileManager {
         saisieText.setText(pageActuelle.getText());
     }
 
-    static void recupererTextePDF(Page pageActuelle,EditText saisieText, List<Page> texteComplet)
+    static void recupererTextePDF(Context mContext, Page pageActuelle, EditText saisieText, List<Page> texteComplet)
     {
-        String cheminAbosluFichierPDF = root.getAbsolutePath() + "/Download/pdf-test.pdf";
+        String cheminAbosluFichierPDF = "" + cheminPdf;
         PDDocument document = null;
 
         int i, j; // j = i-1
-
         try {
             File f = new File(cheminAbosluFichierPDF);
             document = PDDocument.load(f);
@@ -72,12 +77,17 @@ public class FileManager {
         {
             try {
                 PDFTextStripper pdfStripper = new PDFTextStripper();
+
+                texteComplet.clear();
                 for(i = 1 ; i <= document.getNumberOfPages() ; i++)
                 {
-                    j = i - 1;
-                    pdfStripper.setStartPage(j);
+                    pdfStripper.setStartPage(i);
                     pdfStripper.setEndPage(i);
-                    pageActuelle.setText(pdfStripper.getText(document));
+
+                    String texte = pdfStripper.getText(document);
+                    texteComplet.add(new Page(i - 1, texte, ""));
+
+                    System.out.println("Page " + i + " terminée");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -88,12 +98,16 @@ public class FileManager {
                     e.printStackTrace();
                 }
             }
+            pageActuelle.changerPage(texteComplet.get(0));
+
             saisieText.setText(pageActuelle.getText());
         }
         else
             saisieText.setText("document non trouve");
 
+        pageActuelle = texteComplet.get(0);
         saisieText.setText(pageActuelle.getText());
+        Toast.makeText(mContext, "Importation terminée", Toast.LENGTH_LONG).show();
     }
 
 
@@ -162,5 +176,16 @@ public class FileManager {
     {
         Intent intent = new Intent(mContext, ExplorateurFichiersActivity.class);
         mContext.startActivity(intent);
+    }
+
+    public static void LancerMain(Context mContext)
+    {
+        Intent intent = new Intent(mContext, MainActivity.class);
+        mContext.startActivity(intent);
+    }
+
+    public static void setCheminPdf(String pdf)
+    {
+        cheminPdf = pdf;
     }
 }

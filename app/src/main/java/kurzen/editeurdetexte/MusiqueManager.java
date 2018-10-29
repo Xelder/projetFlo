@@ -6,6 +6,7 @@ import android.net.Uri;
 
 public class MusiqueManager {
     private static MediaPlayer musiqueEnCours;
+    private static String cheminMusique = "";
 
     public static void lancerMusique(Context mContext)
     {
@@ -13,6 +14,10 @@ public class MusiqueManager {
         if(musiqueEnCours == null)
         {
             musiqueEnCours = MediaPlayer.create(mContext, R.raw.musiquetest);
+        }
+        if(musiqueEnCours.isPlaying())
+        {
+            musiqueEnCours.stop();
         }
         musiqueEnCours.start();
         musiqueEnCours.isLooping();
@@ -24,5 +29,15 @@ public class MusiqueManager {
         Uri u = Uri.parse(cheminMusique);
         musiqueEnCours = MediaPlayer.create(mContext.getApplicationContext(), u);
         lancerMusique(mContext);
+    }
+
+    public static void setCheminMusique(String musique)
+    {
+        cheminMusique = musique;
+    }
+
+    public static String getCheminMusique()
+    {
+        return cheminMusique;
     }
 }

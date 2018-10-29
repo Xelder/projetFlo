@@ -18,9 +18,9 @@ public class Page {
 
     public Page(int numeroPage, String text, String cheminAbosluMusique)
     {
-        this.numeroPage = numeroPage;
         this.text = text;
-        this.musique = new String(cheminAbosluMusique);
+        this.numeroPage = numeroPage;
+        this.musique = cheminAbosluMusique;
     }
 
 
@@ -30,7 +30,12 @@ public class Page {
         if(pageActuelle.getNumeroPage() < texteComplet.size() -1)
         {
             // on charge une page existante
-            pageActuelle = texteComplet.get(pageActuelle.getNumeroPage() + 1);
+            System.out.println("avant = " + pageActuelle.getNumeroPage());
+            int num = pageActuelle.getNumeroPage() + 1;
+            System.out.println("num = " + num);
+            pageActuelle = texteComplet.get(num);
+
+            System.out.println("apres = " + pageActuelle.getNumeroPage());
         } else if (pageActuelle.getNumeroPage() == texteComplet.size() - 1)
         {
             // on créé la derniere page
@@ -55,6 +60,13 @@ public class Page {
         }
 
         return pageActuelle;
+    }
+
+    public void changerPage(Page p)
+    {
+        this.numeroPage = p.getNumeroPage();
+        this.text = p.getText();
+        this.musique = p.getText();
     }
 
     public String getText() {
