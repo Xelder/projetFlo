@@ -143,28 +143,30 @@ public class FileManager {
         }
         texteComplet.add(new Page(texteComplet.size(), tmpTexte));
     }
-
+    
     public static void sauvegarder(Context mContext, Page pageActuelle, EditText saisieText, List<Page> texteComplet)
     {
         pageActuelle.setText(saisieText.getText().toString());
 
         FileOutputStream output = null;
-        String texteASauvegarger = new String("");
+        String texteASauvegarger = "";
 
         for(int i = 0 ; i < texteComplet.size() ; i++)
         {
-            if(i != texteComplet.size())
-                texteASauvegarger = new String(texteASauvegarger + texteComplet.get(i).getText() + "/page/");
-            else
-                texteASauvegarger = new String(texteASauvegarger + texteComplet.get(i).getText());
+            texteASauvegarger += texteComplet.get(i).getText();
+            texteASauvegarger += "/musique/";
+            texteASauvegarger += texteComplet.get(i).getMusique();
+            texteASauvegarger += "/page/";
         }
-        try {
+
+        try
+        {
             output = mContext.openFileOutput(nomFichier, mContext.MODE_PRIVATE);
             output.write(texteASauvegarger.getBytes());
 
-            if(output != null)
+            if(output != null) {
                 output.close();
-
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
