@@ -58,6 +58,12 @@ public class MainActivity extends AppCompatActivity{
         mainCode();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MusiqueManager.stoppperMusique();
+    }
+
     private void initialisationPage()
     {
         PDFBoxResourceLoader.init(getApplicationContext());
@@ -67,6 +73,10 @@ public class MainActivity extends AppCompatActivity{
         if(texteComplet.isEmpty()) {
             texteComplet.add(new Page(texteComplet.size(), "Page de départ"));
             pageActuelle = texteComplet.get(0);
+        }
+        else
+        {
+            Page.updatePageActuelle(mContext);
         }
     }
 
@@ -99,7 +109,7 @@ public class MainActivity extends AppCompatActivity{
 
             @Override
             public void onClick(View arg0) {
-                pageActuelle = Page.pagePrecedente(pageActuelle, saisieText, texteComplet);
+                Page.pagePrecedente(mContext, saisieText, texteComplet);
             }
 
         });
@@ -116,7 +126,7 @@ public class MainActivity extends AppCompatActivity{
         pageSuivante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                pageActuelle = Page.pageSuivante(pageActuelle, saisieText, texteComplet);
+                Page.pageSuivante(mContext, saisieText, texteComplet);
             }
         });
 
@@ -275,4 +285,5 @@ public class MainActivity extends AppCompatActivity{
     {
         pageActuelle = p;
     }
+
 }

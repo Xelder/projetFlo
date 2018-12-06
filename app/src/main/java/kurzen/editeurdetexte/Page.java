@@ -1,5 +1,6 @@
 package kurzen.editeurdetexte;
 
+import android.content.Context;
 import android.net.Uri;
 import android.widget.EditText;
 
@@ -26,8 +27,9 @@ public class Page {
     }
 
 
-    public static Page pageSuivante(Page pageActuelle, EditText saisieText, List<Page> texteComplet)
+    public static void pageSuivante(Context mContext, EditText saisieText, List<Page> texteComplet)
     {
+        Page pageActuelle = MainActivity.getPageActuelle();
         pageActuelle.setText(saisieText.getText().toString());
         if(pageActuelle.getNumeroPage() < texteComplet.size() -1)
         {
@@ -41,14 +43,15 @@ public class Page {
             texteComplet.add(new Page(texteComplet.size(), "Page " + texteComplet.size()));
             pageActuelle = texteComplet.get(texteComplet.size()-1);
         }
-
         saisieText.setText(pageActuelle.getText());
-        return pageActuelle;
+        MainActivity.setPageActuelle(pageActuelle);
+        updatePageActuelle(mContext, saisieText);
     }
 
 
-    public static Page pagePrecedente(Page pageActuelle, EditText saisieText, List<Page> texteComplet)
+    public static void pagePrecedente(Context mContext, EditText saisieText, List<Page> texteComplet)
     {
+        Page pageActuelle = MainActivity.getPageActuelle();
         pageActuelle.setText(saisieText.getText().toString());
         if(pageActuelle.getNumeroPage() > 0)
         {
@@ -58,7 +61,8 @@ public class Page {
             saisieText.setText(pageActuelle.getText());
         }
 
-        return pageActuelle;
+        MainActivity.setPageActuelle(pageActuelle);
+        updatePageActuelle(mContext,saisieText);
     }
 
     public void changerPage(Page p)
@@ -101,9 +105,23 @@ public class Page {
                 '}' + '\n';
     }
 
-    public static void updatePageActuelle(EditText saisieText)
+    public static void updatePageActuelle(Context mContext, EditText saisieText)
+    {
+        saisieText.setText(MainActivity.getPageActuelle().getText());
+        updatePageActuelle(mContext);
+    }
+
+    public static void updatePageActuelle(Context mContext)
     {
         Page p = MainActivity.getPageActuelle();
-        saisieText.setText(p.getText());
+        if(p.getMusique().isEmpty())
+        {
+            MusiqueManager.stoppperMusique();
+        }
+        else
+        {
+            System.out.println("test");
+            MusiqueManager.lancerMusique(mContext, p.getMusique());
+        }
     }
 }

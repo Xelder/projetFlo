@@ -61,7 +61,7 @@ public class FileManager {
             }
         }
         MainActivity.setPageActuelle(texteComplet.get(0));
-        Page.updatePageActuelle(saisieText);
+        Page.updatePageActuelle(mContexte, saisieText);
     }
 
     static void recupererTextePDF(Context mContext, Page pageActuelle, EditText saisieText, List<Page> texteComplet)

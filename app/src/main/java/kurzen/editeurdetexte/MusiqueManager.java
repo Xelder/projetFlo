@@ -3,6 +3,7 @@ package kurzen.editeurdetexte;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.widget.EditText;
 
 import java.util.List;
 
@@ -10,27 +11,25 @@ public class MusiqueManager {
     private static MediaPlayer musiqueEnCours;
     private static String cheminMusique = "";
 
-    public static void lancerMusique(Context mContext)
-    {
-        // lance une musique stocké a linterieur de lappli
-        if(musiqueEnCours == null)
-        {
-            musiqueEnCours = MediaPlayer.create(mContext, R.raw.musiquetest);
-        }
-        if(musiqueEnCours.isPlaying())
-        {
-            musiqueEnCours.stop();
-        }
-        musiqueEnCours.start();
-        musiqueEnCours.isLooping();
-    }
-
     public static void lancerMusique(Context mContext, String cheminMusique)
     {
         // lance une musique stocker sur le telephone
+        stoppperMusique();
+
         Uri u = Uri.parse(cheminMusique);
         musiqueEnCours = MediaPlayer.create(mContext.getApplicationContext(), u);
-        lancerMusique(mContext);
+        musiqueEnCours.setLooping(true);
+        musiqueEnCours.start();
+    }
+
+    public static void stoppperMusique()
+    {
+        if(musiqueEnCours != null)
+        {
+            musiqueEnCours.stop();
+            musiqueEnCours.release();
+            musiqueEnCours = null;
+        }
     }
 
     public static void setCheminMusique(String musique)
