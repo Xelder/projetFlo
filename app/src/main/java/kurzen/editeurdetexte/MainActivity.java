@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity{
     private int ecranLargeur;
     private int ecranHauteur;
     private EditText saisieText;
-    private List<Page> texteComplet = new ArrayList<Page>();
-    private Page pageActuelle;
+    private static List<Page> texteComplet = new ArrayList<Page>();
+    private static Page pageActuelle = null;
     private Context mContext;
 
     /** attributs pour la gestion des pdf **/
@@ -62,10 +62,12 @@ public class MainActivity extends AppCompatActivity{
     {
         PDFBoxResourceLoader.init(getApplicationContext());
         assetManager = getAssets();
-
         mContext = this;
-        texteComplet.add(new Page(texteComplet.size(), "Page de départ"));
-        pageActuelle = texteComplet.get(0);
+
+        if(texteComplet.isEmpty()) {
+            texteComplet.add(new Page(texteComplet.size(), "Page de départ"));
+            pageActuelle = texteComplet.get(0);
+        }
     }
 
     private void mainCode()
@@ -147,8 +149,8 @@ public class MainActivity extends AppCompatActivity{
         boutonImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                FileManager.recupererTextePDF(mContext, pageActuelle, saisieText, texteComplet);
-               // FileManager.chargementFichierLocal(mContext, pageActuelle, saisieText, texteComplet);
+                //FileManager.recupererTextePDF(mContext, pageActuelle, saisieText, texteComplet);
+                FileManager.chargementFichierLocal(mContext, pageActuelle, saisieText, texteComplet);
             }
         });
 
@@ -259,5 +261,18 @@ public class MainActivity extends AppCompatActivity{
 
         ecranLargeur = metrics.widthPixels;
         ecranHauteur = metrics.heightPixels;
+    }
+
+    public static Page getPageActuelle()
+    {
+        return pageActuelle;
+    }
+    public static List<Page> getTexteComplet()
+    {
+        return texteComplet;
+    }
+    public static void setPageActuelle(Page p)
+    {
+        pageActuelle = p;
     }
 }

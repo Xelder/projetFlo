@@ -3,6 +3,8 @@ package kurzen.editeurdetexte;
 import android.net.Uri;
 import android.widget.EditText;
 
+import org.spongycastle.asn1.bc.PbkdMacIntegrityCheck;
+
 import java.util.List;
 
 
@@ -30,12 +32,9 @@ public class Page {
         if(pageActuelle.getNumeroPage() < texteComplet.size() -1)
         {
             // on charge une page existante
-            System.out.println("avant = " + pageActuelle.getNumeroPage());
             int num = pageActuelle.getNumeroPage() + 1;
-            System.out.println("num = " + num);
             pageActuelle = texteComplet.get(num);
 
-            System.out.println("apres = " + pageActuelle.getNumeroPage());
         } else if (pageActuelle.getNumeroPage() == texteComplet.size() - 1)
         {
             // on créé la derniere page
@@ -91,5 +90,20 @@ public class Page {
 
     public void setNumeroPage(int numeroPage) {
         this.numeroPage = numeroPage;
+    }
+
+    @Override
+    public String toString() {
+        return "Page{" +
+                "text='" + text + '\'' +
+                ", musique='" + musique + '\'' +
+                ", numeroPage=" + numeroPage +
+                '}' + '\n';
+    }
+
+    public static void updatePageActuelle(EditText saisieText)
+    {
+        Page p = MainActivity.getPageActuelle();
+        saisieText.setText(p.getText());
     }
 }

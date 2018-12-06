@@ -4,6 +4,8 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
 
+import java.util.List;
+
 public class MusiqueManager {
     private static MediaPlayer musiqueEnCours;
     private static String cheminMusique = "";
@@ -34,6 +36,10 @@ public class MusiqueManager {
     public static void setCheminMusique(String musique)
     {
         cheminMusique = musique;
+        List<Page> pages = MainActivity.getTexteComplet();
+        Page p = MainActivity.getPageActuelle();
+
+        pages.get(p.getNumeroPage()).setMusique(cheminMusique);
     }
 
     public static String getCheminMusique()
