@@ -6,7 +6,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.tom_roush.pdfbox.pdmodel.PDDocument;
-import com.tom_roush.pdfbox.pdmodel.PDPage;
 import com.tom_roush.pdfbox.text.PDFTextStripper;
 
 import java.io.BufferedReader;
@@ -15,14 +14,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.StringWriter;
-import java.sql.SQLOutput;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.transform.sax.SAXSource;
 
 public class FileManager {
 
@@ -60,7 +53,7 @@ public class FileManager {
                 }
             }
         }
-        MainActivity.setPageActuelle(texteComplet.get(0));
+        EditeurActivity.setPageActuelle(texteComplet.get(0));
         Page.updatePageActuelle(mContexte, saisieText);
     }
 
@@ -217,9 +210,9 @@ public class FileManager {
         mContext.startActivity(intent);
     }
 
-    public static void LancerMain(Context mContext)
+    public static void lancerEditeur(Context mContext)
     {
-        Intent intent = new Intent(mContext, MainActivity.class);
+        Intent intent = new Intent(mContext, EditeurActivity.class);
         mContext.startActivity(intent);
     }
 

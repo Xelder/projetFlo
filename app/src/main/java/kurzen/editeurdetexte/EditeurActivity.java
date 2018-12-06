@@ -3,10 +3,7 @@ package kurzen.editeurdetexte;
 // Chose a faire
 // faire en sorte que le chargement d'un pdf ce fasse sur toute les pages et pas qu'une seule
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.AssetManager;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -15,27 +12,14 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.tom_roush.pdfbox.pdmodel.PDDocument;
-import com.tom_roush.pdfbox.text.PDFTextStripper;
 import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
 
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
-import javax.xml.transform.sax.SAXSource;
-
-public class MainActivity extends AppCompatActivity{
+public class EditeurActivity extends AppCompatActivity{
 	
     private int ecranLargeur;
     private int ecranHauteur;
@@ -261,7 +245,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.editeur_layout);
 
         // suppression de la barre de notification, la barre des titres est supprime dans le manifest
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

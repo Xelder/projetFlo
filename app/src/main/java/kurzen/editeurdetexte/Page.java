@@ -1,10 +1,7 @@
 package kurzen.editeurdetexte;
 
 import android.content.Context;
-import android.net.Uri;
 import android.widget.EditText;
-
-import org.spongycastle.asn1.bc.PbkdMacIntegrityCheck;
 
 import java.util.List;
 
@@ -29,7 +26,7 @@ public class Page {
 
     public static void pageSuivante(Context mContext, EditText saisieText, List<Page> texteComplet)
     {
-        Page pageActuelle = MainActivity.getPageActuelle();
+        Page pageActuelle = EditeurActivity.getPageActuelle();
         pageActuelle.setText(saisieText.getText().toString());
         if(pageActuelle.getNumeroPage() < texteComplet.size() -1)
         {
@@ -44,14 +41,14 @@ public class Page {
             pageActuelle = texteComplet.get(texteComplet.size()-1);
         }
         saisieText.setText(pageActuelle.getText());
-        MainActivity.setPageActuelle(pageActuelle);
+        EditeurActivity.setPageActuelle(pageActuelle);
         updatePageActuelle(mContext, saisieText);
     }
 
 
     public static void pagePrecedente(Context mContext, EditText saisieText, List<Page> texteComplet)
     {
-        Page pageActuelle = MainActivity.getPageActuelle();
+        Page pageActuelle = EditeurActivity.getPageActuelle();
         pageActuelle.setText(saisieText.getText().toString());
         if(pageActuelle.getNumeroPage() > 0)
         {
@@ -61,7 +58,7 @@ public class Page {
             saisieText.setText(pageActuelle.getText());
         }
 
-        MainActivity.setPageActuelle(pageActuelle);
+        EditeurActivity.setPageActuelle(pageActuelle);
         updatePageActuelle(mContext,saisieText);
     }
 
@@ -107,13 +104,13 @@ public class Page {
 
     public static void updatePageActuelle(Context mContext, EditText saisieText)
     {
-        saisieText.setText(MainActivity.getPageActuelle().getText());
+        saisieText.setText(EditeurActivity.getPageActuelle().getText());
         updatePageActuelle(mContext);
     }
 
     public static void updatePageActuelle(Context mContext)
     {
-        Page p = MainActivity.getPageActuelle();
+        Page p = EditeurActivity.getPageActuelle();
         if(p.getMusique().isEmpty())
         {
             MusiqueManager.stoppperMusique();

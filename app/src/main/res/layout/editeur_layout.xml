@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/fond_test"
-    tools:context="kurzen.editeurdetexte.MainActivity">
+    tools:context="kurzen.editeurdetexte.EditeurActivity">
 
     <ImageButton
         android:id="@+id/menu"

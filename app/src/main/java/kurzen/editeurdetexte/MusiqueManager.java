@@ -3,7 +3,6 @@ package kurzen.editeurdetexte;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.widget.EditText;
 
 import java.util.List;
 
@@ -35,8 +34,8 @@ public class MusiqueManager {
     public static void setCheminMusique(String musique)
     {
         cheminMusique = musique;
-        List<Page> pages = MainActivity.getTexteComplet();
-        Page p = MainActivity.getPageActuelle();
+        List<Page> pages = EditeurActivity.getTexteComplet();
+        Page p = EditeurActivity.getPageActuelle();
 
         pages.get(p.getNumeroPage()).setMusique(cheminMusique);
     }

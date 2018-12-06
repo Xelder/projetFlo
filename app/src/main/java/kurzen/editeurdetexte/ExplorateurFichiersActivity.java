@@ -83,7 +83,7 @@ public class ExplorateurFichiersActivity extends AppCompatActivity {
                         MusiqueManager.setCheminMusique(filename);
                     }
                     Toast.makeText(mContext, filename, Toast.LENGTH_LONG).show();
-                    FileManager.LancerMain(mContext);
+                    FileManager.lancerEditeur(mContext);
                 }
             }
         });
