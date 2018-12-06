@@ -30,7 +30,7 @@ public class MenuActivity extends AppCompatActivity {
 
     public void readClic(View v)
     {
-        System.out.println("read");
+        Liseuse.lancerLiseuse(this);
     }
 
     public void musicClic(View v)

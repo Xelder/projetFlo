@@ -2,6 +2,7 @@ package kurzen.editeurdetexte;
 
 import android.content.Context;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class Page {
     }
 
 
-    public static void pageSuivante(Context mContext, EditText saisieText, List<Page> texteComplet)
+    public static void pageSuivante(Context mContext, TextView saisieText, List<Page> texteComplet)
     {
         Page pageActuelle = EditeurActivity.getPageActuelle();
         pageActuelle.setText(saisieText.getText().toString());
@@ -46,7 +47,7 @@ public class Page {
     }
 
 
-    public static void pagePrecedente(Context mContext, EditText saisieText, List<Page> texteComplet)
+    public static void pagePrecedente(Context mContext, TextView saisieText, List<Page> texteComplet)
     {
         Page pageActuelle = EditeurActivity.getPageActuelle();
         pageActuelle.setText(saisieText.getText().toString());
@@ -102,7 +103,7 @@ public class Page {
                 '}' + '\n';
     }
 
-    public static void updatePageActuelle(Context mContext, EditText saisieText)
+    public static void updatePageActuelle(Context mContext, TextView saisieText)
     {
         saisieText.setText(EditeurActivity.getPageActuelle().getText());
         updatePageActuelle(mContext);

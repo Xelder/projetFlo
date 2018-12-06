@@ -3,6 +3,7 @@ package kurzen.editeurdetexte;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tom_roush.pdfbox.pdmodel.PDDocument;
@@ -23,7 +24,7 @@ public class FileManager {
     private static File root = android.os.Environment.getExternalStorageDirectory();
     private static String cheminPdf = "";
 
-    public static void chargementFichierLocal(Context mContexte, Page pageActuelle, EditText saisieText, List<Page> texteComplet)
+    public static void chargementFichierLocal(Context mContexte, Page pageActuelle, TextView saisieText, List<Page> texteComplet)
     {
         FileInputStream in = null;
         texteComplet.clear();

@@ -12,18 +12,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".EditeurActivity">
-
-        </activity>
+        <activity android:name=".EditeurActivity"></activity>
         <activity android:name=".ExplorateurFichiersActivity" />
         <activity
             android:name=".MenuActivity"
             android:label="@string/title_activity_menu"
-            android:theme="@style/Theme.AppCompat.NoActionBar"><intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Liseuse"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_liseuse"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>
