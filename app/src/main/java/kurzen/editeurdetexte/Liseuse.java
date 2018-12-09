@@ -41,7 +41,7 @@ public class Liseuse extends AppCompatActivity {
 
     public void pageSuivante(View v)
     {
-        Page.pageSuivante(mContext, texte, texteComplet);
+        Page.pageSuivante(mContext, texte, texteComplet, false);
     }
 
     public void pagePrecedente(View v)

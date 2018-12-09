@@ -55,7 +55,7 @@ public class FileManager {
             }
         }
         EditeurActivity.setPageActuelle(texteComplet.get(0));
-        Page.updatePageActuelle(mContexte, saisieText);
+        Page.updatePageActuelle(mContexte, saisieText, "", EditeurActivity.getPageActuelle().getMusique());
     }
 
     static void recupererTextePDF(Context mContext, Page pageActuelle, EditText saisieText, List<Page> texteComplet)

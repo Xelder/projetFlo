@@ -25,17 +25,19 @@ public class Page {
     }
 
 
-    public static void pageSuivante(Context mContext, TextView saisieText, List<Page> texteComplet)
+    public static void pageSuivante(Context mContext, TextView saisieText, List<Page> texteComplet, boolean creationNouvellePage)
     {
         Page pageActuelle = EditeurActivity.getPageActuelle();
         pageActuelle.setText(saisieText.getText().toString());
+        String musiquePrecedente = pageActuelle.getMusique();
+
         if(pageActuelle.getNumeroPage() < texteComplet.size() -1)
         {
             // on charge une page existante
             int num = pageActuelle.getNumeroPage() + 1;
             pageActuelle = texteComplet.get(num);
 
-        } else if (pageActuelle.getNumeroPage() == texteComplet.size() - 1)
+        } else if (creationNouvellePage && pageActuelle.getNumeroPage() == texteComplet.size() - 1)
         {
             // on créé la derniere page
             texteComplet.add(new Page(texteComplet.size(), "Page " + texteComplet.size()));
@@ -43,7 +45,7 @@ public class Page {
         }
         saisieText.setText(pageActuelle.getText());
         EditeurActivity.setPageActuelle(pageActuelle);
-        updatePageActuelle(mContext, saisieText);
+        updatePageActuelle(mContext, saisieText, musiquePrecedente, pageActuelle.getMusique());
     }
 
 
@@ -51,6 +53,8 @@ public class Page {
     {
         Page pageActuelle = EditeurActivity.getPageActuelle();
         pageActuelle.setText(saisieText.getText().toString());
+        String musiquePrecedente = pageActuelle.getMusique();
+
         if(pageActuelle.getNumeroPage() > 0)
         {
             int numPage = pageActuelle.getNumeroPage() - 1;
@@ -60,7 +64,7 @@ public class Page {
         }
 
         EditeurActivity.setPageActuelle(pageActuelle);
-        updatePageActuelle(mContext,saisieText);
+        updatePageActuelle(mContext,saisieText, musiquePrecedente, pageActuelle.getMusique());
     }
 
     public void changerPage(Page p)
@@ -103,13 +107,13 @@ public class Page {
                 '}' + '\n';
     }
 
-    public static void updatePageActuelle(Context mContext, TextView saisieText)
+    public static void updatePageActuelle(Context mContext, TextView saisieText, String musiquePagePrecedente, String musiquePageActuelle)
     {
         saisieText.setText(EditeurActivity.getPageActuelle().getText());
-        updatePageActuelle(mContext);
+        updatePageActuelle(mContext, musiquePagePrecedente, musiquePageActuelle);
     }
 
-    public static void updatePageActuelle(Context mContext)
+    public static void updatePageActuelle(Context mContext, String musiquePagePrecedente, String musiquePageActuelle)
     {
         Page p = EditeurActivity.getPageActuelle();
         if(p.getMusique().isEmpty())
@@ -118,8 +122,11 @@ public class Page {
         }
         else
         {
-            System.out.println("test");
-            MusiqueManager.lancerMusique(mContext, p.getMusique());
+            System.out.println(!(musiquePageActuelle.equals(musiquePagePrecedente)));
+            if(!(musiquePageActuelle.equals(musiquePagePrecedente)))
+            {
+                MusiqueManager.lancerMusique(mContext, p.getMusique());
+            }
         }
     }
 }

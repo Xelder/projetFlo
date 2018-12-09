@@ -60,7 +60,7 @@ public class EditeurActivity extends AppCompatActivity{
         }
         else
         {
-            Page.updatePageActuelle(mContext);
+            Page.updatePageActuelle(mContext, "", pageActuelle.getMusique());
         }
     }
 
@@ -110,7 +110,7 @@ public class EditeurActivity extends AppCompatActivity{
         pageSuivante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Page.pageSuivante(mContext, saisieText, texteComplet);
+                Page.pageSuivante(mContext, saisieText, texteComplet, true);
             }
         });
 
