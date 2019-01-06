@@ -6,21 +6,21 @@ import java.sql.Array;
 public class Mot {
 
 
-    String mot;
+    private String mot;
 
-    int joy;
-    int anger;
-    int fear;
-    int sadness;
-    int confidence;
-    int excitment;
+    private int joy;
+    private int anger;
+    private int fear;
+    private int sadness;
+    private int confidence;
+    private int excitment;
 
-    int Tjoy;
-    int Tanger;
-    int Tfear;
-    int Tsadness;
-    int Tconfidence;
-    int Texcitment;
+    private int Tjoy;
+    private int Tanger;
+    private int Tfear;
+    private int Tsadness;
+    private int Tconfidence;
+    private int Texcitment;
 
     public Mot(){}
 
@@ -50,6 +50,10 @@ public class Mot {
 
     public void setJoy(int joy) {
         this.joy = joy;
+    }
+
+    public void setMot(String mot) {
+        this.mot = mot;
     }
 
     public void setAnger(int anger) {
@@ -94,6 +98,10 @@ public class Mot {
 
     public void setTexcitment(int texcitment) {
         Texcitment = texcitment;
+    }
+
+    public String getMot() {
+        return mot;
     }
 
     public int getJoy() {
@@ -160,41 +168,5 @@ public class Mot {
                 ", Tconfidence=" + Tconfidence +
                 ", Texcitment=" + Texcitment +
                 '}';
-    }
-
-    public Mot valeurTexte(String text){
-
-        /** Parse text for the current page **/
-        String [] words = text.split(" ");
-        int nombreMotsTexte = words.length;
-
-        /** Set start values **/
-        Tjoy = 0;
-        Tanger = 0;
-        Tfear = 0;
-        Tsadness = 0;
-        Tconfidence = 50;
-        Texcitment = 0;
-
-        for(int i = 0; i < nombreMotsTexte ; i++ ){
-            Tjoy = Tjoy + joy;
-            Tanger = Tanger + anger;
-            Tfear = Tfear + fear;
-            Tsadness = Tsadness + sadness;
-            Tconfidence = Tconfidence + confidence;
-            Texcitment = Texcitment + excitment;
-        }
-
-        /** Normalise values **/
-        Tjoy = Tjoy / nombreMotsTexte;
-        Tanger = Tanger / nombreMotsTexte;
-        Tfear = Tfear / nombreMotsTexte;
-        Tsadness = Tsadness / nombreMotsTexte;
-        Tconfidence = Tconfidence / nombreMotsTexte;
-        Texcitment = Texcitment / nombreMotsTexte;
-
-        /** return values for tag analysis **/
-
-        return new Mot(Tjoy,Tanger,Tfear,Tsadness,Tconfidence,Texcitment);
     }
 }

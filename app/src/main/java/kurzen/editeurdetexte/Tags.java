@@ -9,27 +9,27 @@ public class Tags {
 
     /**Tags Joie **/
 
-    List<Tag> joie = new ArrayList<Tag>();
+    private List<Tag> joie = new ArrayList<Tag>();
 
 
     /** Tags Colère **/
 
-    List<Tag> colere = new ArrayList<Tag>();
+    private List<Tag> colere = new ArrayList<Tag>();
 
 
     /** Tags tristesse **/
 
-    List<Tag> tristesse = new ArrayList<Tag>();
+    private List<Tag> tristesse = new ArrayList<Tag>();
 
 
     /** Tags peur **/
 
-    List<Tag> peur = new ArrayList<Tag>();
+    private List<Tag> peur = new ArrayList<Tag>();
 
 
     /** Tags confidence **/
 
-    List<Tag> confidence = new ArrayList<Tag>();
+    private List<Tag> confidence = new ArrayList<Tag>();
 
 
     public Tags(){

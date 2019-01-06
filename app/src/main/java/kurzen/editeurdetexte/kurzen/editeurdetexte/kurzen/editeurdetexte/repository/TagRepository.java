@@ -9,7 +9,7 @@ import kurzen.editeurdetexte.kurzen.editeurdetexte.config.BDD;
 public class TagRepository {
 
     private BDD bdd = new BDD();
-    Dao<Tag, String> tagDao = null;
+    private Dao<Tag, String> tagDao = null;
 
     public TagRepository() {
 

@@ -7,6 +7,7 @@ import kurzen.editeurdetexte.Tags;
 public class TagsService {
 
     private Tags tags = new Tags();
+
     public Tag rechercheTag(Mot TextValue) {
 
         /** récupération des données du tableau **/
