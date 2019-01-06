@@ -1,9 +1,9 @@
-package editeurdetexte.otageek.reader;
+package kurzen.editeurdetexte;
 
 import java.sql.Array;
 
 
-public class Mots {
+public class Mot {
 
 
     String mot;
@@ -21,9 +21,10 @@ public class Mots {
     int Tsadness;
     int Tconfidence;
     int Texcitment;
-    int TnumberWords;
 
-    public Mots(int joy, int anger, int fear, int sadness, int confidence, int excitment, int tjoy, int tanger, int tfear, int tsadness, int tconfidence, int texcitment, int tnumberWords) {
+    public Mot(){}
+
+    public Mot(int joy, int anger, int fear, int sadness, int confidence, int excitment, int tjoy, int tanger, int tfear, int tsadness, int tconfidence, int texcitment, int tnumberWords) {
         this.joy = joy;
         this.anger = anger;
         this.fear = fear;
@@ -36,7 +37,15 @@ public class Mots {
         Tsadness = tsadness;
         Tconfidence = tconfidence;
         Texcitment = texcitment;
-        TnumberWords = tnumberWords;
+    }
+
+    public Mot(int joy, int anger, int fear, int sadness, int confidence, int excitment){
+        this.joy = joy;
+        this.anger = anger;
+        this.fear = fear;
+        this.sadness = sadness;
+        this.confidence = confidence;
+        this.excitment = excitment;
     }
 
     public void setJoy(int joy) {
@@ -87,10 +96,6 @@ public class Mots {
         Texcitment = texcitment;
     }
 
-    public void setTnumberWords(int tnumberWords) {
-        TnumberWords = tnumberWords;
-    }
-
     public int getJoy() {
         return joy;
     }
@@ -139,10 +144,6 @@ public class Mots {
         return Texcitment;
     }
 
-    public int getTnumberWords() {
-        return TnumberWords;
-    }
-
     @Override
     public String toString() {
         return "Mots{" +
@@ -158,15 +159,14 @@ public class Mots {
                 ", Tsadness=" + Tsadness +
                 ", Tconfidence=" + Tconfidence +
                 ", Texcitment=" + Texcitment +
-                ", TnumberWords=" + TnumberWords +
                 '}';
     }
 
-    public float[] valeurTexte(String text){
+    public Mot valeurTexte(String text){
 
         /** Parse text for the current page **/
         String [] words = text.split(" ");
-        int size = words.length;
+        int nombreMotsTexte = words.length;
 
         /** Set start values **/
         Tjoy = 0;
@@ -175,28 +175,26 @@ public class Mots {
         Tsadness = 0;
         Tconfidence = 50;
         Texcitment = 0;
-        TnumberWords = 0;
 
-        for(int i = 0; i < size ; i++ ){
+        for(int i = 0; i < nombreMotsTexte ; i++ ){
             Tjoy = Tjoy + joy;
             Tanger = Tanger + anger;
             Tfear = Tfear + fear;
             Tsadness = Tsadness + sadness;
             Tconfidence = Tconfidence + confidence;
             Texcitment = Texcitment + excitment;
-            TnumberWords = TnumberWords + 1;
         }
 
         /** Normalise values **/
-        Tjoy = Tjoy / TnumberWords;
-        Tanger = Tanger / TnumberWords;
-        Tfear = Tfear / TnumberWords;
-        Tsadness = Tsadness / TnumberWords;
-        Tconfidence = Tconfidence / TnumberWords;
-        Texcitment = Texcitment / TnumberWords;
+        Tjoy = Tjoy / nombreMotsTexte;
+        Tanger = Tanger / nombreMotsTexte;
+        Tfear = Tfear / nombreMotsTexte;
+        Tsadness = Tsadness / nombreMotsTexte;
+        Tconfidence = Tconfidence / nombreMotsTexte;
+        Texcitment = Texcitment / nombreMotsTexte;
 
         /** return values for tag analysis **/
-        float[] result = {Tjoy,Tanger,Tfear,Tsadness,Tconfidence,Texcitment};
-        return result;
+
+        return new Mot(Tjoy,Tanger,Tfear,Tsadness,Tconfidence,Texcitment);
     }
 }

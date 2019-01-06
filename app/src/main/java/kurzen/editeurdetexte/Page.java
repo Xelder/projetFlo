@@ -11,6 +11,7 @@ public class Page {
     private String text;
     private String musique;
     private int numeroPage;
+    Mot valeurEmotionnelle = new Mot();
 
     public Page(int numeroPage, String text)
     {

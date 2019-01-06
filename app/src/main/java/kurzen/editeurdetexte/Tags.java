@@ -1,124 +1,196 @@
-package editeurdetexte.otageek.reader;
+package kurzen.editeurdetexte;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tags {
 
     /**Variables pour l'algo de conversion en tags **/
 
-        /** utilisées pour sortir les valeurs du tableau et les manipuler plus facilement **/
-
-    float joyVal,angVal,feaVal,sadVal;
-
-        /** utilisées pour le calcul **/
-
-    String mainEmotion;
-    float valueMainEmotion, valueConfidence, valueExcitement;
-
-
     /**Tags Joie **/
 
-    String joie[] = {"reverant","conscencious","pensive","peaceful","longuing","aroused","calm","pleased","lightHearted","relaxed","glad","enthusiastic","adventurous","happy","satisfied","serene","excited","amorous","joyous"};
+    List<Tag> joie = new ArrayList<Tag>();
 
-    int reverant[] = {20,00};
-    int conscensious[] = {20,20};
-    int pensive[] = {30,25};
-    int peaceful[] = {40,5};
-    int longing[] = {40,30};
-    int aroused[] = {40,85};
-    int calm[] = {50,10};
-    int pleased[] = {50,50};
-    int lightHearted[] = {50,60};
-    int relaxed[] = {60,10};
-    int glad[] = {60,45};
-    int enthusiastic[] = {60,70};
-    int adventurous[] = {60,90};
-    int happy[] = {70,55};
-    int serene[] = {80,20};
-    int satisfied[] = {80,25};
-    int excited[] = {80,70};
-    int amorous[] = {90,35};
-    int joyous[] = {90,60};
-    int exctasy[] = {100,75};
+    Tag reverant = new Tag("reverant",20,00);
+    Tag conscensious =  new Tag("conscensious",20,20);
+    Tag pensive = new Tag("pensive",30,25);
+    Tag peaceful = new Tag("peaceful",40,05);
+    Tag longing = new Tag ("longing",40,30);
+    Tag aroused = new Tag ("aroused",40,85);
+    Tag calm = new Tag ("calm",50,10);
+    Tag pleased = new Tag ("pleased",50,50);
+    Tag lightHearted = new Tag ("lightHearted",50,60);
+    Tag relaxed = new Tag ("relaxed", 60,10);
+    Tag glad = new Tag ("glad",60,45);
+    Tag enthusiastic = new Tag ("enthusiastic", 60,70);
+    Tag adventurous = new Tag ("adventurous",60,90);
+    Tag happy = new Tag ("happy",70,55);
+    Tag serene = new Tag ("serene",80,20);
+    Tag satisfied = new Tag ("satisfied",80,25);
+    Tag excited = new Tag ("excited",80,70);
+    Tag amorous = new Tag ("amorous",90,35);
+    Tag joyous = new Tag ("joyous",90,60);
+    Tag exctasy = new Tag ("exctasy",100,75);
 
     /** Tags Colère **/
 
-    String colère[] = {"defiant","dissatisfied","indignant","bitter","contemptful","Annoyed","angry","frustrated","bellicose","hostile","disgusted","loathing","hateful","enraged"};
+    List<Tag> colere = new ArrayList<Tag>();
 
-    int defiant[] = {10,40};
-    int dissatisfied[] = {20,15};
-    int indignant[] = {20,50};
-    int bitter[] = {30,30};
-    int contemptful[] = {30,35};
-    int annoyed[] = {50,15};
-    int angry[] = {50,50};
-    int frustrated[] = {60,35};
-    int bellicose[] = {60,95};
-    int hostile[] = {80,70};
-    int disgusted[] = {90,25};
-    int loathing[] = {90,40};
-    int hateful[] = {90,50};
-    int enraged[] = {100,90};
+    Tag defiant = new Tag ("defiant",10,40);
+    Tag dissatisfied = new Tag ("dissatisfied",20,15);
+    Tag indignant = new Tag ("indignat",20,50);
+    Tag bitter = new Tag ("bitter",30,30);
+    Tag contemptful = new Tag ("contemptful",30,35);
+    Tag annoyed = new Tag ("annoyed",50,15);
+    Tag angry = new Tag ("angry",50,50);
+    Tag frustrated = new Tag ("frustrated",60,35);
+    Tag bellicose = new Tag ("bellicose",60,95);
+    Tag hostile = new Tag ("hostile",80,70);
+    Tag disgusted = new Tag ("disgusted",90,25);
+    Tag loathing = new Tag ("loathing",90,40);
+    Tag hateful = new Tag ("hateful",90,50);
+    Tag enraged = new Tag ("enraged",100,90);
 
     /** Tags tristesse **/
 
-    String tristesse[] = {"apathetic","guilt","melancholic","disapointed","droopy","gloomy","sad","miserable","distress","dejected","despair"};
+    List<Tag> tristesse = new ArrayList<Tag>();
 
-    int apathetic[] = {20,10};
-    int guilt[] = {20,30};
-    int melancholic[] = {30,25};
-    int disapointed[] = {30,50};
-    int droopy[] = {40,10};
-    int gloomy[] = {50,30};
-    int sad[] = {50,50};
-    int miserable[] = {70,35};
-    int distress[] = {70,90};
-    int dejected[] = {90,50};
-    int despair[] = {100,70};
+    Tag apathetic = new Tag ("apathetic",20,10);
+    Tag guilt = new Tag ("guilt",20,30);
+    Tag melancholic = new Tag ("melancholic",30,25);
+    Tag disapointed = new Tag ("disapointed",30,50);
+    Tag droopy = new Tag ("droopy",40,10);
+    Tag gloomy = new Tag ("gloomy",50,30);
+    Tag sad = new Tag ("sad",50,50);
+    Tag miserable = new Tag ("miserable",70,35);
+    Tag distress = new Tag ("distress",70,90);
+    Tag dejected = new Tag ("dejected",90,50);
+    Tag despair = new Tag ("despair",100,70);
 
     /** Tags peur **/
 
-    String peur[] = {"unconfortable","startled","unneasy","worry","fear","anxious","tense","afraid","terror"};
+    List<Tag> peur = new ArrayList<Tag>();
 
-    int unconfortable[] = {30,15};
-    int startled[] = {30,80};
-    int unneasy[] = {40,25};
-    int worry[] = {50,35};
-    int fear[] = {50,50};
-    int anxious[] = {50,65};
-    int tense[] = {60,95};
-    int alarmed[] = {70,65};
-    int afraid[] = {80,90};
-    int terror[] = {100,95};
+    Tag unconfortable = new Tag ("unconfortable",30,15);
+    Tag startled = new Tag ("startled",30,80);
+    Tag unneasy = new Tag ("unneasy",40,25);
+    Tag worry = new Tag ("worry",50,35);
+    Tag fear = new Tag ("fear",50,50);
+    Tag anxious = new Tag ("anxious",50,65);
+    Tag tense = new Tag ("tense",60,95);
+    Tag alarmed = new Tag ("alarmed",70,65);
+    Tag afraid = new Tag ("afraid",80,90);
+    Tag terror = new Tag ("terror",100,95);
 
     /** Tags confidence **/
 
-    String confidence[] = {"atLoss","distrustful","confused","suspicious","takenAback","hesitant","descriptive","assured","confident","contemplative","convinced","conceited"};
+    List<Tag> confidence = new ArrayList<Tag>();
 
-    int atLoss[] = {10,5};
-    int distrustful[] = {20,25};
-    int confused[] = {20,85};
-    int suspicious[] = {30,30};
-    int takenAback[] = {30,70};
-    int hesitant[] = {40,40};
-    int descriptive[] = {50,50};
-    int assured[] = {70,35};
-    int confident[] = {70,60};
-    int contemplative[] = {80,20};
-    int convinced[] = {90,80};
-    int conceited[] = {100,90};
+    Tag atLoss = new Tag ("atLoss",10,5);
+    Tag distrustful = new Tag ("distrustful",20,25);
+    Tag confused = new Tag ("confused",20,85);
+    Tag suspicious = new Tag ("suspicious",30,30);
+    Tag takenAback = new Tag ("takenAback",30,70);
+    Tag hesitant = new Tag ("hesitant",40,40);
+    Tag descriptive = new Tag ("descriptive",50,50);
+    Tag assured = new Tag ("assured",70,35);
+    Tag confident = new Tag ("confident",70,60);
+    Tag contemplative = new Tag ("contemplative",80,20);
+    Tag convinced = new Tag ("convinced",90,80);
+    Tag conceited = new Tag ("conceited",100,90);
 
 
-    public Tags(){}
+    public Tags(){
 
-    public Tags(float[] TextValue) {
+        confidence.add(atLoss);
+        confidence.add(distrustful);
+        confidence.add(confused);
+        confidence.add(suspicious);
+        confidence.add(takenAback);
+        confidence.add(hesitant);
+        confidence.add(descriptive);
+        confidence.add(assured);
+        confidence.add(confident);
+        confidence.add(contemplative);
+        confidence.add(convinced);
+        confidence.add(conceited);
+
+        peur.add(unconfortable);
+        peur.add(startled);
+        peur.add(unneasy);
+        peur.add(worry);
+        peur.add(fear);
+        peur.add(anxious);
+        peur.add(tense);
+        peur.add(alarmed);
+        peur.add(afraid);
+        peur.add(terror);
+
+        tristesse.add(apathetic);
+        tristesse.add(guilt);
+        tristesse.add(melancholic);
+        tristesse.add(disapointed);
+        tristesse.add(droopy);
+        tristesse.add(gloomy);
+        tristesse.add(sad);
+        tristesse.add(miserable);
+        tristesse.add(distress);
+        tristesse.add(dejected);
+        tristesse.add(despair);
+
+        colere.add(defiant);
+        colere.add(dissatisfied);
+        colere.add(indignant);
+        colere.add(bitter);
+        colere.add(contemptful);
+        colere.add(annoyed);
+        colere.add(angry);
+        colere.add(frustrated);
+        colere.add(bellicose);
+        colere.add(hostile);
+        colere.add(disgusted);
+        colere.add(loathing);
+        colere.add(hateful);
+        colere.add(enraged);
+
+        joie.add(reverant);
+        joie.add(conscensious);
+        joie.add(pensive);
+        joie.add(peaceful);
+        joie.add(longing);
+        joie.add(aroused);
+        joie.add(calm);
+        joie.add(pleased);
+        joie.add(lightHearted);
+        joie.add(relaxed);
+        joie.add(glad);
+        joie.add(enthusiastic);
+        joie.add(adventurous);
+        joie.add(happy);
+        joie.add(serene);
+        joie.add(satisfied);
+        joie.add(excited);
+        joie.add(amorous);
+        joie.add(joyous);
+        joie.add(exctasy);
+
+    }
+
+    public Tag rechercheTag(Mot TextValue) {
 
         /** récupération des données du tableau **/
 
-        joyVal = TextValue[0];
-        angVal = TextValue[1];
-        feaVal = TextValue[2];
-        sadVal = TextValue[3];
-        valueConfidence = TextValue[4];
-        valueExcitement = TextValue[5];
+        int joyVal = TextValue.getJoy();
+        int angVal = TextValue.getAnger();
+        int feaVal = TextValue.getFear();
+        int sadVal = TextValue.getSadness();
+        int ValueConfidence = TextValue.getConfidence();
+        int valueExcitement = TextValue.getExcitment();
+
+        String mainEmotion;
+        int valueMainEmotion;
+
+        Tag emotionTexte = null;
 
         /** détermination de l'émotion principale **/
 
@@ -183,42 +255,43 @@ public class Tags {
 
         if (mainEmotion == "joie") {
 
-            for (int i = 0; i < joie.length; i++ ){
+            for (int i = 0; i < joie.size(); i++ ){
 
-
+                /** Calcul de la distance entre le point [i] et le point du Texte actuel **/
 
             }
         }
 
         if (mainEmotion == "colère") {
 
-            for (int i = 0; i < colère.length; i++ ){
+            for (int i = 0; i < colere.size(); i++ ){
 
-
+                /** Calcul de la distance entre le point [i] et le point du Texte actuel **/
 
             }
         }
 
         if (mainEmotion == "peur") {
 
-            for (int i = 0; i < peur.length; i++ ){
+            for (int i = 0; i < peur.size(); i++ ){
 
-
+                /** Calcul de la distance entre le point [i] et le point du Texte actuel **/
 
             }
         }
 
         if (mainEmotion == "tristesse") {
 
-            for (int i = 0; i < tristesse.length; i++ ){
+            for (int i = 0; i < tristesse.size(); i++ ){
 
-
+                /** Calcul de la distance entre le point [i] et le point du Texte actuel **/
 
             }
         }
 
-
+    return emotionTexte;
 
     }
+
 
 }
