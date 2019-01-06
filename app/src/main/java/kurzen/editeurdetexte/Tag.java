@@ -35,13 +35,4 @@ public class Tag {
     public void setExcitementValue(int excitementValue) {
         this.excitementValue = excitementValue;
     }
-
-    @Override
-    public String toString() {
-        return "Tag{" +
-                "nom='" + nom + '\'' +
-                ", mainEmotion=" + mainEmotion +
-                ", excitementValue=" + excitementValue +
-                '}';
-    }
 }
