@@ -1,10 +1,25 @@
 package kurzen.editeurdetexte;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+@DatabaseTable(tableName = "tags")
 public class Tag {
 
-    String nom;
-    int mainEmotion;
-    int excitementValue;
+    @DatabaseField(id = true, generatedId=true)
+    private long id;
+
+    @DatabaseField(canBeNull = true)
+    private String nom;
+    @DatabaseField(canBeNull = true)
+    private int mainEmotion;
+    @DatabaseField(canBeNull = true)
+    private int excitementValue;
+
+    public Tag(){
+
+    }
+
 
     public Tag(String nom, int mainEmotion, int excitementValue) {
         this.nom = nom;
