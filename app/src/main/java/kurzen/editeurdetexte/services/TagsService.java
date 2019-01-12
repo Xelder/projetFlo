@@ -1,12 +1,26 @@
 package kurzen.editeurdetexte.services;
 
+import java.util.List;
+
 import kurzen.editeurdetexte.models.Mot;
 import kurzen.editeurdetexte.models.Tag;
 import kurzen.editeurdetexte.models.Tags;
 
 public class TagsService {
 
-    private Tags tags = new Tags();
+    private List<Tag> joie;
+    private List<Tag> colere;
+    private List<Tag> confidence;
+    private List<Tag> tristesse;
+    private List<Tag> peur;
+
+    public TagsService(List<Tag> joie, List<Tag> colere, List<Tag> confidence, List<Tag> tristesse, List<Tag> peur) {
+        this.joie = joie;
+        this.colere = colere;
+        this.confidence = confidence;
+        this.tristesse = tristesse;
+        this.peur = peur;
+    }
 
     public Tag rechercheTag(Mot TextValue) {
 
@@ -87,7 +101,7 @@ public class TagsService {
 
         if (mainEmotion == "joie") {
 
-            for (int i = 0; i < tags.getJoie().size(); i++ ){
+            for (int i = 0; i < joie.size(); i++ ){
 
                 /** Calcul de la distance entre le point [i] et le point du Texte actuel **/
 
@@ -96,7 +110,7 @@ public class TagsService {
 
         if (mainEmotion == "colère") {
 
-            for (int i = 0; i < tags.getColere().size(); i++ ){
+            for (int i = 0; i < colere.size(); i++ ){
 
                 /** Calcul de la distance entre le point [i] et le point du Texte actuel **/
 
@@ -105,7 +119,7 @@ public class TagsService {
 
         if (mainEmotion == "peur") {
 
-            for (int i = 0; i < tags.getPeur().size(); i++ ){
+            for (int i = 0; i < peur.size(); i++ ){
 
                 /** Calcul de la distance entre le point [i] et le point du Texte actuel **/
 
@@ -114,7 +128,7 @@ public class TagsService {
 
         if (mainEmotion == "tristesse") {
 
-            for (int i = 0; i < tags.getTristesse().size(); i++ ){
+            for (int i = 0; i < tristesse.size(); i++ ){
 
                 /** Calcul de la distance entre le point [i] et le point du Texte actuel **/
 

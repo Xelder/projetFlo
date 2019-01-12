@@ -27,8 +27,8 @@ public class TagDAO {
     }
 
     /**
-     * Retourne un tag ayant l'id passe en parametre
-     * @param id identifiant du tag recherche en base de donnees
+     * Retourne un Tag ayant l'id passe en parametre
+     * @param id identifiant du Tag recherche en base de donnees
      * @return Tag ayant l'identifiant passe en parametre
      */
     public Tag getById(long id)
@@ -38,7 +38,7 @@ public class TagDAO {
 
     /**
      * Methode retournant tout les Tag de la base de donnes
-     * @return List<Tag> avec tout les tags stockes en base de donnees
+     * @return List<Tag> avec tout les Tags stockes en base de donnees
      */
     public List<Tag> getAll()
     {
@@ -46,7 +46,7 @@ public class TagDAO {
     }
 
     /**
-     * Permet d'inserer un tag en base de donnees
+     * Permet d'inserer un Tag en base de donnees
      * @param tag
      */
     public void insert(Tag tag)
@@ -55,7 +55,7 @@ public class TagDAO {
     }
 
     /**
-     * Permet de mettre à jours un tag en base de donnees
+     * Permet de mettre à jours un Tag en base de donnees
      * @param tag Objet Tag avec ses nouvelles valeurs
      */
     public void update(Tag tag)
@@ -64,7 +64,7 @@ public class TagDAO {
     }
 
     /**
-     * Supprime un tag passe en parametre de la base de donnees
+     * Supprime un Tag passe en parametre de la base de donnees
      * @param tag Tag à supprimer
      */
     public void deleteByTag(Tag tag)

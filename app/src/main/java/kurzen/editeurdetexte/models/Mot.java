@@ -40,7 +40,29 @@ public class Mot {
 
     public Mot(){}
 
-    public Mot(int joy, int anger, int fear, int sadness, int confidence, int excitment, int tjoy, int tanger, int tfear, int tsadness, int tconfidence, int texcitment, int tnumberWords) {
+    public Mot(String mot, int joy, int anger, int fear, int sadness, int confidence, int excitment) {
+        this.mot = mot;
+        this.joy = joy;
+        this.anger = anger;
+        this.fear = fear;
+        this.sadness = sadness;
+        this.confidence = confidence;
+        this.excitment = excitment;
+    }
+
+    public Mot(int joy, int anger, int fear, int sadness, int confidence, int excitment) {
+        this.mot = mot;
+        this.joy = joy;
+        this.anger = anger;
+        this.fear = fear;
+        this.sadness = sadness;
+        this.confidence = confidence;
+        this.excitment = excitment;
+    }
+
+    public Mot(long id, String mot, int joy, int anger, int fear, int sadness, int confidence, int excitment, int tjoy, int tanger, int tfear, int tsadness, int tconfidence, int texcitment) {
+        this.id = id;
+        this.mot = mot;
         this.joy = joy;
         this.anger = anger;
         this.fear = fear;
@@ -53,15 +75,6 @@ public class Mot {
         Tsadness = tsadness;
         Tconfidence = tconfidence;
         Texcitment = texcitment;
-    }
-
-    public Mot(int joy, int anger, int fear, int sadness, int confidence, int excitment){
-        this.joy = joy;
-        this.anger = anger;
-        this.fear = fear;
-        this.sadness = sadness;
-        this.confidence = confidence;
-        this.excitment = excitment;
     }
 
     public void setJoy(int joy) {
@@ -170,19 +183,15 @@ public class Mot {
 
     @Override
     public String toString() {
-        return "Mots{" +
-                "joy=" + joy +
+        return "Mot{" +
+                "id=" + id +
+                ", mot='" + mot + '\'' +
+                ", joy=" + joy +
                 ", anger=" + anger +
                 ", fear=" + fear +
                 ", sadness=" + sadness +
                 ", confidence=" + confidence +
                 ", excitment=" + excitment +
-                ", Tjoy=" + Tjoy +
-                ", Tanger=" + Tanger +
-                ", Tfear=" + Tfear +
-                ", Tsadness=" + Tsadness +
-                ", Tconfidence=" + Tconfidence +
-                ", Texcitment=" + Texcitment +
                 '}';
     }
 }

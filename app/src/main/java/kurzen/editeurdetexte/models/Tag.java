@@ -17,15 +17,19 @@ public class Tag {
     @DatabaseField
     private int excitementValue;
 
+    @DatabaseField
+    private String nomMainEmotion;
+
     public Tag(){
 
     }
 
 
-    public Tag(String nom, int mainEmotion, int excitementValue) {
+    public Tag(String nom, int mainEmotion, int excitementValue, String nomMainEmotion) {
         this.nom = nom;
         this.mainEmotion = mainEmotion;
         this.excitementValue = excitementValue;
+        this.nomMainEmotion = nomMainEmotion;
     }
 
     public String getNom() {
@@ -52,6 +56,14 @@ public class Tag {
         this.excitementValue = excitementValue;
     }
 
+    public String getNomMainEmotion() {
+        return nomMainEmotion;
+    }
+
+    public void setNomMainEmotion(String nomMainEmotion) {
+        this.nomMainEmotion = nomMainEmotion;
+    }
+
     @Override
     public String toString() {
         return "Tag{" +
@@ -59,6 +71,7 @@ public class Tag {
                 ", nom='" + nom + '\'' +
                 ", mainEmotion=" + mainEmotion +
                 ", excitementValue=" + excitementValue +
+                ", nomMainEmotion='" + nomMainEmotion + '\'' +
                 '}';
     }
 }

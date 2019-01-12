@@ -15,12 +15,13 @@ import java.sql.SQLException;
 import kurzen.editeurdetexte.R;
 import kurzen.editeurdetexte.models.Mot;
 import kurzen.editeurdetexte.models.Tag;
+import kurzen.editeurdetexte.models.Tags;
 
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     // name of the database file for your application -- change to something appropriate for your app
-    private static final String DATABASE_NAME = "ScenariOST.db";
+    private static final String DATABASE_NAME = "ScenariOST14.db";
 
     // any time you make changes to your database objects, you may have to increase the database version
     private static final int DATABASE_VERSION = 1;
@@ -47,12 +48,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     {
         try {
             Log.i(DatabaseHelper.class.getName(), "onCreate");
-            TableUtils.createTable(connectionSource, Tag.class);
             TableUtils.createTable(connectionSource, Mot.class);
+            TableUtils.createTable(connectionSource, Tag.class);
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
             throw new RuntimeException(e);
         }
+
+        Tags tags = new Tags(this);
     }
 
     /**
@@ -69,18 +72,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     }
 
     /**
-     * @Return Returns the Database Access Object (DAO) for our Tag class. It will create it or just give the cached
-     * value.
-     */
-    public Dao<Tag, Long> getTagDao() throws SQLException {
-        if (tagDao == null) {
-            tagDao = getDao(Tag.class);
-        }
-        return tagDao;
-    }
-
-
-    /**
      * @Return Returns the RuntimeExceptionDao (Database Access Object) version of a Dao for our Tag class. It will
      * create it or just give the cached value. RuntimeExceptionDao only through RuntimeExceptions.
      */
@@ -90,18 +81,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         }
         return tagRuntimeDao;
     }
-
-    /**
-     * @Return Returns the Database Access Object (DAO) for our Mot class. It will create it or just give the cached
-     * value.
-     */
-    public Dao<Mot, Long> getMotDao() throws SQLException {
-        if (motDao == null) {
-            motDao = getDao(Mot.class);
-        }
-        return motDao;
-    }
-
 
     /**
      * @Return Returns the RuntimeExceptionDao (Database Access Object) version of a Dao for our Mot class. It will
@@ -122,5 +101,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         super.close();
         tagDao = null;
         tagRuntimeDao = null;
+        motDao = null;
+        motRuntimeDao = null;
     }
 }
