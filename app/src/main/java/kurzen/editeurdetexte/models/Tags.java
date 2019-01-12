@@ -1,7 +1,9 @@
-package kurzen.editeurdetexte;
+package kurzen.editeurdetexte.models;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import kurzen.editeurdetexte.models.Tag;
 
 public class Tags {
 

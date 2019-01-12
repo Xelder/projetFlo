@@ -1,18 +1,34 @@
-package kurzen.editeurdetexte;
+package kurzen.editeurdetexte.models;
+
+import com.j256.ormlite.field.DatabaseField;
 
 import java.sql.Array;
 
 
 public class Mot {
 
+    @DatabaseField(generatedId = true)
+    private long id;
 
+    @DatabaseField
     private String mot;
 
+    @DatabaseField
     private int joy;
+
+    @DatabaseField
     private int anger;
+
+    @DatabaseField
     private int fear;
+
+    @DatabaseField
     private int sadness;
+
+    @DatabaseField
     private int confidence;
+
+    @DatabaseField
     private int excitment;
 
     private int Tjoy;

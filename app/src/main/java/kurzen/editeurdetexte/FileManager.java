@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
+import kurzen.editeurdetexte.models.Page;
+
 public class FileManager {
 
     private static String nomFichier = "testFichier";

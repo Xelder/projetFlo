@@ -1,9 +1,9 @@
-package kurzen.editeurdetexte.kurzen.editeurdetexte.service;
+package kurzen.editeurdetexte.services;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import kurzen.editeurdetexte.Mot;
+import kurzen.editeurdetexte.models.Mot;
 
 public class MotService {
 

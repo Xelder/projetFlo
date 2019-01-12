@@ -1,8 +1,8 @@
-package kurzen.editeurdetexte.kurzen.editeurdetexte.service;
+package kurzen.editeurdetexte.services;
 
-import kurzen.editeurdetexte.Mot;
-import kurzen.editeurdetexte.Tag;
-import kurzen.editeurdetexte.Tags;
+import kurzen.editeurdetexte.models.Mot;
+import kurzen.editeurdetexte.models.Tag;
+import kurzen.editeurdetexte.models.Tags;
 
 public class TagsService {
 

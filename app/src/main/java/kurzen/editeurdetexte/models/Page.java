@@ -1,10 +1,12 @@
-package kurzen.editeurdetexte;
+package kurzen.editeurdetexte.models;
 
 import android.content.Context;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.List;
+
+import kurzen.editeurdetexte.EditeurActivity;
+import kurzen.editeurdetexte.MusiqueManager;
 
 
 public class Page {

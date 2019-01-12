@@ -1,19 +1,20 @@
-package kurzen.editeurdetexte;
+package kurzen.editeurdetexte.models;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "tags")
 public class Tag {
 
-    @DatabaseField(id = true, generatedId=true)
+    @DatabaseField(generatedId = true)
     private long id;
 
-    @DatabaseField(canBeNull = true)
+    @DatabaseField
     private String nom;
-    @DatabaseField(canBeNull = true)
+
+    @DatabaseField
     private int mainEmotion;
-    @DatabaseField(canBeNull = true)
+
+    @DatabaseField
     private int excitementValue;
 
     public Tag(){
@@ -49,5 +50,15 @@ public class Tag {
 
     public void setExcitementValue(int excitementValue) {
         this.excitementValue = excitementValue;
+    }
+
+    @Override
+    public String toString() {
+        return "Tag{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", mainEmotion=" + mainEmotion +
+                ", excitementValue=" + excitementValue +
+                '}';
     }
 }

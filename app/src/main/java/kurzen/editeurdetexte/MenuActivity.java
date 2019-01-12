@@ -10,7 +10,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class MenuActivity extends AppCompatActivity {
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
+
+import java.util.List;
+
+import kurzen.editeurdetexte.config.DatabaseHelper;
+import kurzen.editeurdetexte.dao.TagDAO;
+import kurzen.editeurdetexte.models.Tag;
+
+public class MenuActivity extends OrmLiteBaseActivity<DatabaseHelper> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +29,24 @@ public class MenuActivity extends AppCompatActivity {
 
     public void profileClic(View v)
     {
-        System.out.println("profile");
+
+        // get our dao
+        TagDAO dao = new TagDAO(this.getHelper());
+
+        // query for all of the data objects in the database
+        List<Tag> liste = dao.getAll();
+
+        StringBuilder sb = new StringBuilder();
+
+        int simpleC = 1;
+        for(Tag simple : liste)
+        {
+            sb.append('#').append(simpleC).append(": ").append(simple).append('\n');
+            simpleC++;
+        }
+
+
+        System.out.println(sb);
     }
 
     public void writeClic(View v)
@@ -35,6 +61,7 @@ public class MenuActivity extends AppCompatActivity {
 
     public void musicClic(View v)
     {
-        System.out.println("music");
+        TagDAO dao = new TagDAO(this.getHelper());
+        dao.deleteById(3);
     }
 }

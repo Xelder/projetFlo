@@ -6,6 +6,8 @@ import android.net.Uri;
 
 import java.util.List;
 
+import kurzen.editeurdetexte.models.Page;
+
 public class MusiqueManager {
     private static MediaPlayer musiqueEnCours;
     private static String cheminMusique = "";

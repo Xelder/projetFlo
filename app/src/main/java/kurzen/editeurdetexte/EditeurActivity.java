@@ -19,7 +19,8 @@ import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
 import java.util.ArrayList;
 import java.util.List;
 
-import kurzen.editeurdetexte.kurzen.editeurdetexte.kurzen.editeurdetexte.repository.TagRepository;
+import kurzen.editeurdetexte.models.Page;
+import kurzen.editeurdetexte.models.Tag;
 
 public class EditeurActivity extends AppCompatActivity{
 	
@@ -68,15 +69,6 @@ public class EditeurActivity extends AppCompatActivity{
 
     private void mainCode()
     {
-
-        TagRepository tagrepository = new TagRepository();
-
-        Tag tag = new Tag();
-
-        tag.setExcitementValue(9000);
-
-        tagrepository.insert(tag);
-
         /** option de lediteur de texte **/
         saisieText = findViewById(R.id.editText);
         saisieText.setWidth(ecranLargeur * 80 / 100);
