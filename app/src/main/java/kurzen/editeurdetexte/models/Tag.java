@@ -17,19 +17,26 @@ public class Tag {
     @DatabaseField
     private int excitementValue;
 
-    @DatabaseField
-    private String nomMainEmotion;
+    @DatabaseField(foreign = true)
+    protected Tags tags;
 
     public Tag(){
 
     }
 
 
-    public Tag(String nom, int mainEmotion, int excitementValue, String nomMainEmotion) {
+    public Tag(String nom, int mainEmotion, int excitementValue, Tags tags) {
         this.nom = nom;
         this.mainEmotion = mainEmotion;
         this.excitementValue = excitementValue;
-        this.nomMainEmotion = nomMainEmotion;
+        this.tags = tags;
+    }
+
+
+    public Tag(String nom, int mainEmotion, int excitementValue ) {
+        this.nom = nom;
+        this.mainEmotion = mainEmotion;
+        this.excitementValue = excitementValue;
     }
 
     public String getNom() {
@@ -56,22 +63,12 @@ public class Tag {
         this.excitementValue = excitementValue;
     }
 
-    public String getNomMainEmotion() {
-        return nomMainEmotion;
-    }
-
-    public void setNomMainEmotion(String nomMainEmotion) {
-        this.nomMainEmotion = nomMainEmotion;
-    }
-
     @Override
     public String toString() {
         return "Tag{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
+                "nom='" + nom + '\'' +
                 ", mainEmotion=" + mainEmotion +
                 ", excitementValue=" + excitementValue +
-                ", nomMainEmotion='" + nomMainEmotion + '\'' +
                 '}';
     }
 }

@@ -5,13 +5,12 @@ import android.view.View;
 
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 
-import java.util.List;
-
 import kurzen.editeurdetexte.config.DatabaseHelper;
 import kurzen.editeurdetexte.dao.MotDAO;
-import kurzen.editeurdetexte.dao.TagDAO;
+import kurzen.editeurdetexte.dao.TagsDAO;
 import kurzen.editeurdetexte.models.Mot;
 import kurzen.editeurdetexte.models.Tag;
+import kurzen.editeurdetexte.models.Tags;
 
 public class MenuActivity extends OrmLiteBaseActivity<DatabaseHelper> {
 
@@ -23,15 +22,13 @@ public class MenuActivity extends OrmLiteBaseActivity<DatabaseHelper> {
 
     public void profileClic(View v)
     {
-        TagDAO dao = new TagDAO(this.getHelper());
-        StringBuilder sb = new StringBuilder();
+        TagsDAO dao = new TagsDAO(this.getHelper());
 
-        List<Tag> mots = dao.getAll();
-        for(Tag mot: mots)
-        {
-            System.out.println(mot);
-        }
-        System.out.println(sb);
+        Tags tags = dao.getById(5);
+
+        for(Tag tag : tags.getTags())
+                System.out.println(tag);
+
     }
 
     public void writeClic(View v)

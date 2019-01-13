@@ -23,7 +23,7 @@ public class TagDAO {
      */
     public TagDAO(DatabaseHelper helper)
     {
-        dao = helper.getRuntimeTagDao();
+dao = helper.getRuntimeTagDao();
     }
 
     /**
