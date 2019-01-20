@@ -5,10 +5,15 @@ import android.view.View;
 
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 
+import java.util.List;
+
 import kurzen.editeurdetexte.config.DatabaseHelper;
 import kurzen.editeurdetexte.dao.MotDAO;
+import kurzen.editeurdetexte.dao.MusiqueDAO;
+import kurzen.editeurdetexte.dao.TagDAO;
 import kurzen.editeurdetexte.dao.TagsDAO;
 import kurzen.editeurdetexte.models.Mot;
+import kurzen.editeurdetexte.models.Musique;
 import kurzen.editeurdetexte.models.Tag;
 import kurzen.editeurdetexte.models.Tags;
 
@@ -22,12 +27,6 @@ public class MenuActivity extends OrmLiteBaseActivity<DatabaseHelper> {
 
     public void profileClic(View v)
     {
-        TagsDAO dao = new TagsDAO(this.getHelper());
-
-        Tags tags = dao.getById(5);
-
-        for(Tag tag : tags.getTags())
-                System.out.println(tag);
 
     }
 
@@ -43,10 +42,6 @@ public class MenuActivity extends OrmLiteBaseActivity<DatabaseHelper> {
 
     public void musicClic(View v)
     {
-        MotDAO dao = new MotDAO(this.getHelper());
-        Mot mot = new Mot();
-        mot.setMot("test");
-        Tag tag = new Tag();
-        dao.insert(mot);
+
     }
 }

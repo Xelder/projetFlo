@@ -14,6 +14,7 @@ import java.sql.SQLException;
 
 import kurzen.editeurdetexte.R;
 import kurzen.editeurdetexte.models.Mot;
+import kurzen.editeurdetexte.models.Musique;
 import kurzen.editeurdetexte.models.Tag;
 import kurzen.editeurdetexte.models.Tags;
 
@@ -21,7 +22,7 @@ import kurzen.editeurdetexte.models.Tags;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     // name of the database file for your application -- change to something appropriate for your app
-    private static final String DATABASE_NAME = "ScenariOST24.db";
+    private static final String DATABASE_NAME = "ScenariOST.db";
 
     // any time you make changes to your database objects, you may have to increase the database version
     private static final int DATABASE_VERSION = 1;
@@ -37,6 +38,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     // tags DAO
     private Dao<Tags, Long> tagsDao = null;
     private RuntimeExceptionDao<Tags, Long> tagsRuntimeDao = null;
+
+    // musique DAO
+    private Dao<Musique, Long> musiqueDao = null;
+    private RuntimeExceptionDao<Musique, Long> musiqueRuntimeDao = null;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
@@ -54,6 +59,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             Log.i(DatabaseHelper.class.getName(), "onCreate");
             TableUtils.createTable(connectionSource, Mot.class);
             TableUtils.createTable(connectionSource, Tag.class);
+            TableUtils.createTable(connectionSource, Musique.class);
             TableUtils.createTable(connectionSource, Tags.class);
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
@@ -95,6 +101,19 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     }
 
+    @Override
+    public void close() {
+        super.close();
+        tagDao = null;
+        tagRuntimeDao = null;
+        motDao = null;
+        motRuntimeDao = null;
+        tagsDao = null;
+        tagsRuntimeDao = null;
+        musiqueDao = null;
+        musiqueRuntimeDao = null;
+    }
+
     /**
      * @Return Returns the RuntimeExceptionDao (Database Access Object) version of a Dao for our Tag class. It will
      * create it or just give the cached value. RuntimeExceptionDao only through RuntimeExceptions.
@@ -126,6 +145,17 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             motRuntimeDao = getRuntimeExceptionDao(Mot.class);
         }
         return motRuntimeDao;
+    }
+
+    /**
+     * @Return Returns the RuntimeExceptionDao (Database Access Object) version of a Dao for our Mot class. It will
+     * create it or just give the cached value. RuntimeExceptionDao only through RuntimeExceptions.
+     */
+    public RuntimeExceptionDao<Musique, Long> getRuntimeMusiqueDao() {
+        if (musiqueRuntimeDao == null) {
+            musiqueRuntimeDao = getRuntimeExceptionDao(Musique.class);
+        }
+        return musiqueRuntimeDao;
     }
 
 

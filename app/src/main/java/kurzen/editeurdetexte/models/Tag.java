@@ -1,6 +1,8 @@
 package kurzen.editeurdetexte.models;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 public class Tag {
@@ -19,6 +21,9 @@ public class Tag {
 
     @DatabaseField(foreign = true)
     protected Tags tags;
+
+    @ForeignCollectionField(eager = true)
+    ForeignCollection<Musique> musique;
 
     public Tag(){
 
@@ -63,12 +68,23 @@ public class Tag {
         this.excitementValue = excitementValue;
     }
 
+    public ForeignCollection<Musique> getMusique() {
+        return musique;
+    }
+
+    public void setMusique(ForeignCollection<Musique> musique) {
+        this.musique = musique;
+    }
+
     @Override
     public String toString() {
         return "Tag{" +
-                "nom='" + nom + '\'' +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
                 ", mainEmotion=" + mainEmotion +
                 ", excitementValue=" + excitementValue +
+                ", tags=" + tags +
+                ", musique=" + musique +
                 '}';
     }
 }
