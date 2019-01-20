@@ -3,10 +3,13 @@ package kurzen.editeurdetexte;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.SystemClock;
 
 import java.util.List;
 
 import kurzen.editeurdetexte.models.Page;
+import kurzen.editeurdetexte.thread.LancerMusiqueThread;
+import kurzen.editeurdetexte.thread.StopMusiqueThread;
 
 public class MusiqueManager {
     private static MediaPlayer musiqueEnCours;
@@ -15,20 +18,26 @@ public class MusiqueManager {
     public static void lancerMusique(Context mContext, String cheminMusique)
     {
         // lance une musique stocker sur le telephone
-        stoppperMusique();
+        if(musiqueEnCours != null)
+        {
+            stopperMusique(mContext);
+        }
 
         Uri u = Uri.parse(cheminMusique);
         musiqueEnCours = MediaPlayer.create(mContext.getApplicationContext(), u);
-        musiqueEnCours.setLooping(true);
-        musiqueEnCours.start();
+
+        LancerMusiqueThread lancerMusiqueThread = new LancerMusiqueThread(mContext, musiqueEnCours);
+        lancerMusiqueThread.start();
+
     }
 
-    public static void stoppperMusique()
+    public static void stopperMusique(Context mContext)
     {
         if(musiqueEnCours != null)
         {
-            musiqueEnCours.stop();
-            musiqueEnCours.release();
+            StopMusiqueThread musiqueThread = new StopMusiqueThread(mContext, musiqueEnCours);
+            musiqueThread.start();
+
             musiqueEnCours = null;
         }
     }

@@ -4,6 +4,7 @@ package kurzen.editeurdetexte;
 // faire en sorte que le chargement d'un pdf ce fasse sur toute les pages et pas qu'une seule
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -20,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kurzen.editeurdetexte.models.Page;
-import kurzen.editeurdetexte.models.Tag;
 
 public class EditeurActivity extends AppCompatActivity{
 	
@@ -48,7 +48,7 @@ public class EditeurActivity extends AppCompatActivity{
     @Override
     protected void onPause() {
         super.onPause();
-        MusiqueManager.stoppperMusique();
+        MusiqueManager.stopperMusique(this);
     }
 
     private void initialisationPage()

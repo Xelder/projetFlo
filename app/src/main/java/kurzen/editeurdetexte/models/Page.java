@@ -1,6 +1,7 @@
 package kurzen.editeurdetexte.models;
 
 import android.content.Context;
+import android.net.Uri;
 import android.widget.TextView;
 
 import java.util.List;
@@ -119,16 +120,15 @@ public class Page {
     public static void updatePageActuelle(Context mContext, String musiquePagePrecedente, String musiquePageActuelle)
     {
         Page p = EditeurActivity.getPageActuelle();
-        if(p.getMusique().isEmpty())
+        if(p.getMusique().trim().isEmpty())
         {
-            MusiqueManager.stoppperMusique();
+            MusiqueManager.stopperMusique(mContext);
         }
         else
         {
-            System.out.println(!(musiquePageActuelle.equals(musiquePagePrecedente)));
             if(!(musiquePageActuelle.equals(musiquePagePrecedente)))
             {
-                MusiqueManager.lancerMusique(mContext, p.getMusique());
+                MusiqueManager.lancerMusique(mContext, musiquePageActuelle);
             }
         }
     }
