@@ -99,8 +99,9 @@ public class FileManager {
                 }
             }
             pageActuelle.changerPage(texteComplet.get(0));
-
+            System.out.println(pageActuelle.getText());
             saisieText.setText(pageActuelle.getText());
+            System.out.println("apres");
         }
         else
             saisieText.setText("document non trouve");
@@ -217,6 +218,10 @@ public class FileManager {
     {
         Intent intent = new Intent(mContext, EditeurActivity.class);
         mContext.startActivity(intent);
+    }
+
+    public static String getCheminPdf() {
+        return cheminPdf;
     }
 
     public static void setCheminPdf(String pdf)

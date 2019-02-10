@@ -76,7 +76,12 @@ public class EditeurActivity extends AppCompatActivity{
         saisieText.setX(ecranLargeur / 10);
         saisieText.setY(ecranHauteur * 12 / 100);
 
-        saisieText.setText(pageActuelle.getText());
+        if(!FileManager.getCheminPdf().trim().isEmpty()) {
+            FileManager.recupererTextePDF(this, pageActuelle, (EditText) findViewById(R.id.editText), texteComplet);
+        } else {
+            saisieText.setText(pageActuelle.getText());
+        }
+
         saisieText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -147,7 +152,8 @@ public class EditeurActivity extends AppCompatActivity{
             @Override
             public void onClick(View arg0) {
                 //FileManager.recupererTextePDF(mContext, pageActuelle, saisieText, texteComplet);
-                FileManager.chargementFichierLocal(mContext, pageActuelle, saisieText, texteComplet);
+                //FileManager.chargementFichierLocal(mContext, pageActuelle, saisieText, texteComplet);
+                new ExplorateurFichiers(mContext);
             }
         });
 
