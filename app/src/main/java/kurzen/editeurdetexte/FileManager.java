@@ -99,9 +99,8 @@ public class FileManager {
                 }
             }
             pageActuelle.changerPage(texteComplet.get(0));
-            System.out.println(pageActuelle.getText());
+
             saisieText.setText(pageActuelle.getText());
-            System.out.println("apres");
         }
         else
             saisieText.setText("document non trouve");
